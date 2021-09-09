@@ -13,11 +13,11 @@ endif
 LIB_SRCS += VimbaFeature.cpp
 LIB_SRCS += ADVimba.cpp
 
-LIB_LIBS  += VimbaCPP VimbaC VimbaImageTransform ADGenICam
+LIB_LIBS  += VimbaCPP ADGenICam
 
 DBD += ADVimbaSupport.dbd
 
-PROD_LIBS_WIN32 += VimbaCPP VimbaC
+PROD_LIBS_WIN32 += VimbaCPP
 
 # We need to list this as a SYS_LIBS when building statically because it is only available as a .so, not .a
 PROD_SYS_LIBS_Linux += VimbaCPP VimbaC
