@@ -45,7 +45,7 @@ LIB_SRCS += Semaphore.cpp
 LIB_SRCS += StringFeature.cpp
 LIB_SRCS += VimbaSystem.cpp
 
-LIB_LIBS += VimbaC
+#LIB_LIBS += VimbaC
 
 #=============================
 
