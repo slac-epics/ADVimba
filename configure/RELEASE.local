@@ -33,7 +33,7 @@ ADGENICAM_MODULE_VERSION     = current
 ADCORE       = $(EPICS_MODULES)/ADCore/$(ADCORE_MODULE_VERSION)
 ASYN         = $(EPICS_MODULES)/asyn/$(ASYN_MODULE_VERSION)
 
-MCB_MODULES  = /cds/home/m/mcbrowne/trunk12/modules
+MCB_MODULES  = /cds/home/m/mcbrowne/git/modules
 ADGENICAM    = $(MCB_MODULES)/ADGenICam
 
 
