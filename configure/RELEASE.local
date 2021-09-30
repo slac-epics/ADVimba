@@ -21,7 +21,7 @@
 # ==========================================================
 ADCORE_MODULE_VERSION        = R3.9-1.0.2
 ASYN_MODULE_VERSION          = R4.39-1.0.0
-ADGENICAM_MODULE_VERSION     = current
+ADGENICAM_MODULE_VERSION     = R1.0.0
 
 # ==========================================================
 # Define module paths using pattern
@@ -32,9 +32,10 @@ ADGENICAM_MODULE_VERSION     = current
 
 ADCORE       = $(EPICS_MODULES)/ADCore/$(ADCORE_MODULE_VERSION)
 ASYN         = $(EPICS_MODULES)/asyn/$(ASYN_MODULE_VERSION)
+ADGENICAM    = $(EPICS_MODULES)/ADGenICam/$(ADGENICAM_MODULE_VERSION)
 
-MCB_MODULES  = /cds/home/m/mcbrowne/git/modules
-ADGENICAM    = $(MCB_MODULES)/ADGenICam
+#MCB_MODULES  = /cds/home/m/mcbrowne/git/modules
+#ADGENICAM    = $(MCB_MODULES)/ADGenICam
 
 
 # Set EPICS_BASE last so it appears last in the DB, DBD, INCLUDE, and LIB search paths
