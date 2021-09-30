@@ -401,7 +401,7 @@ buttonLabel "?"
 numPvs 4
 numDsps 1
 displayFileName {
-  0 "arvScreens/aravisHelp.edl"
+  0 "vimbaScreens/vimbaHelp.edl"
 }
 setPosition {
   0 "button"
@@ -844,7 +844,7 @@ bgColor index 3
 topShadowColor index 1
 botShadowColor index 11
 displaySource "file"
-file "arvScreens/aravisCamera.edl"
+file "vimbaScreens/vimbaCamera.edl"
 sizeOfs 0
 numDsps 0
 noScroll
@@ -869,7 +869,7 @@ buttonLabel "more features..."
 numPvs 4
 numDsps 1
 displayFileName {
-  0 "arvScreens/%(camera_name)s-features.edl"
+  0 "vimbaScreens/%(camera_name)s-features.edl"
 }
 setPosition {
   0 "parentWindow"

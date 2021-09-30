@@ -60,7 +60,7 @@ bgColor index 3
 topShadowColor index 1
 botShadowColor index 11
 displaySource "file"
-file "arvScreens/aravisCamera.edl"
+file "vimbaScreens/vimbaCamera.edl"
 sizeOfs 0
 numDsps 0
 noScroll
@@ -85,7 +85,7 @@ buttonLabel "more features..."
 numPvs 4
 numDsps 1
 displayFileName {
-  0 "arvScreens/Alvium_1800_U240m-features.edl"
+  0 "vimbaScreens/Alvium_1800_U240m-features.edl"
 }
 setPosition {
   0 "parentWindow"
