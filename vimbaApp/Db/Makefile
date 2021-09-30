@@ -9,6 +9,8 @@ include $(TOP)/configure/CONFIG
 
 DB += $(patsubst ../%, %, $(wildcard ../*.template))
 
+DB += $(patsubst ../%, %, $(wildcard ../*.env))
+
 include $(TOP)/configure/RULES
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE
