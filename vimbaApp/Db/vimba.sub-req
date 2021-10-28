@@ -1,0 +1,3 @@
+file vimba_settings.req {
+    { P=$(CAM), R=: }
+}
