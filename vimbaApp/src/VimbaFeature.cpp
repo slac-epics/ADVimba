@@ -72,8 +72,8 @@ inline asynStatus VimbaFeature::checkError(VmbErrorType error, const char *funct
 {
     if (VmbErrorSuccess != error) {
         asynPrint(mAsynUser, ASYN_TRACE_ERROR,
-            "%s:%s: ERROR calling %s error=%d\n",
-            driverName, functionName, VMBFunction, error);
+            "%s:%s: ERROR calling %s error=%d, name=%s\n",
+            driverName, functionName, VMBFunction, error, mFeatureName.c_str());
         return asynError;
     }
     return asynSuccess;

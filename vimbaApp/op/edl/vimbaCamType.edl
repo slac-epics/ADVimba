@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 50
-y 72
+x 1459
+y 307
 w 400
 h 345
 font "helvetica-bold-r-12.0"
@@ -36,7 +36,7 @@ x 260
 y 28
 w 76
 h 20
-controlPv "$(P)$(R)COMPLETED_RBV"
+controlPv "$(P)$(R)GC_StatFrameDelivered_RBV"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
 fgColor index 15
@@ -64,7 +64,7 @@ font "helvetica-medium-r-12.0"
 fgColor index 14
 bgColor index 3
 value {
-  "Completed"
+  "Delivered"
 }
 endObjectProperties
 
@@ -78,7 +78,7 @@ x 260
 y 52
 w 76
 h 20
-controlPv "$(P)$(R)FAILURES_RBV"
+controlPv "$(P)$(R)GC_StatFrameDropped_RBV"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
 fgColor index 15
@@ -106,7 +106,7 @@ font "helvetica-medium-r-12.0"
 fgColor index 14
 bgColor index 3
 value {
-  "Failures"
+  "Dropped"
 }
 endObjectProperties
 
@@ -120,7 +120,7 @@ x 260
 y 76
 w 76
 h 20
-controlPv "$(P)$(R)UNDERRUNS_RBV"
+controlPv "$(P)$(R)GC_StatFrameUnderrun_RBV"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
 fgColor index 15
@@ -158,9 +158,9 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 16
+x 6
 y 28
-w 84
+w 94
 h 20
 font "helvetica-medium-r-12.0"
 fgColor index 14
@@ -170,44 +170,21 @@ value {
 }
 endObjectProperties
 
-# (Message Button)
-object activeMessageButtonClass
-beginObjectProperties
-major 4
-minor 1
-release 0
-x 104
-y 28
-w 72
-h 20
-fgColor index 25
-onColor index 6
-offColor index 5
-topShadowColor index 1
-botShadowColor index 11
-controlPv "$(P)$(R)RESET.PROC"
-pressValue "1"
-onLabel "Reconnect"
-offLabel "Reconnect"
-3d
-font "helvetica-medium-r-12.0"
-endObjectProperties
-
 # (Static Text)
 object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
 release 1
-x 16
+x 6
 y 76
-w 84
+w 94
 h 20
 font "helvetica-medium-r-12.0"
 fgColor index 14
 bgColor index 3
 value {
-  "Left shift data"
+  "Trigger Source"
 }
 endObjectProperties
 
@@ -226,105 +203,9 @@ bgColor index 5
 inconsistentColor index 40
 topShadowColor index 1
 botShadowColor index 11
-controlPv "$(P)$(R)LEFTSHIFT"
-indicatorPv "$(P)$(R)LEFTSHIFT_RBV"
+controlPv "$(P)$(R)TriggerSource"
+indicatorPv "$(P)$(R)TriggerSource_RBV"
 font "helvetica-medium-r-12.0"
-endObjectProperties
-
-# (Related Display)
-object relatedDisplayClass
-beginObjectProperties
-major 4
-minor 4
-release 0
-x 0
-y 28
-w 16
-h 20
-fgColor index 14
-bgColor index 3
-topShadowColor index 1
-botShadowColor index 11
-font "helvetica-medium-r-12.0"
-xPosOffset -100
-yPosOffset -148
-useFocus
-buttonLabel "?"
-numPvs 4
-numDsps 1
-displayFileName {
-  0 "arvScreens/aravisHelp.edl"
-}
-setPosition {
-  0 "button"
-}
-symbols {
-  0 "desc0=Click this button if your camera stops communicating or acquiring.,desc1=It will do a reconnect,desc2='',desc3='',desc4='',desc5=''"
-}
-endObjectProperties
-
-# (Related Display)
-object relatedDisplayClass
-beginObjectProperties
-major 4
-minor 4
-release 0
-x 0
-y 76
-w 16
-h 20
-fgColor index 14
-bgColor index 3
-topShadowColor index 1
-botShadowColor index 11
-font "helvetica-medium-r-12.0"
-xPosOffset -100
-yPosOffset -148
-useFocus
-buttonLabel "?"
-numPvs 4
-numDsps 1
-displayFileName {
-  0 "arvScreens/aravisHelp.edl"
-}
-setPosition {
-  0 "button"
-}
-symbols {
-  0 "desc0=If set to Yes: 10 12 and 14 bit frames will be left shifted so they occupy the most,desc1=significant bits of the 16 bit frame,desc2='',desc3='',desc4='',desc5=''"
-}
-endObjectProperties
-
-# (Related Display)
-object relatedDisplayClass
-beginObjectProperties
-major 4
-minor 4
-release 0
-x 0
-y 52
-w 16
-h 20
-fgColor index 14
-bgColor index 3
-topShadowColor index 1
-botShadowColor index 11
-font "helvetica-medium-r-12.0"
-xPosOffset -100
-yPosOffset -148
-useFocus
-buttonLabel "?"
-numPvs 4
-numDsps 1
-displayFileName {
-  0 "arvScreens/aravisHelp.edl"
-}
-setPosition {
-  0 "button"
-}
-symbols {
-  0 "desc0=Set to Yes to get feature value updates periodically ,desc1=(never more than one feature every 5ms),desc2=Set to No if you are getting performance issues,desc3='',desc4='',desc5=''"
-}
 endObjectProperties
 
 # (Static Text)
@@ -333,15 +214,15 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 16
+x 6
 y 52
-w 84
+w 94
 h 20
 font "helvetica-medium-r-12.0"
 fgColor index 14
 bgColor index 3
 value {
-  "Get features"
+  "Acq Rate Enable"
 }
 endObjectProperties
 
@@ -360,8 +241,8 @@ bgColor index 5
 inconsistentColor index 40
 topShadowColor index 1
 botShadowColor index 11
-controlPv "$(P)$(R)GETFEATURES"
-indicatorPv "$(P)$(R)GETFEATURES_RBV"
+controlPv "$(P)$(R)FrameRateEnable"
+indicatorPv "$(P)$(R)FrameRateEnable_RBV"
 font "helvetica-medium-r-12.0"
 endObjectProperties
 
@@ -446,80 +327,22 @@ newPos
 objType "monitors"
 endObjectProperties
 
-# (Related Display)
-object relatedDisplayClass
-beginObjectProperties
-major 4
-minor 4
-release 0
-x 0
-y 148
-w 16
-h 20
-fgColor index 14
-bgColor index 3
-topShadowColor index 1
-botShadowColor index 11
-font "helvetica-medium-r-12.0"
-xPosOffset -100
-yPosOffset -148
-useFocus
-buttonLabel "?"
-numPvs 4
-numDsps 1
-displayFileName {
-  0 "arvScreens/aravisHelp.edl"
-}
-setPosition {
-  0 "button"
-}
-symbols {
-  0 "desc0=Frame timeout in us before giving up on image frame.,desc1='',desc2='',desc3='',desc4='',desc5=''"
-}
-endObjectProperties
-
 # (Static Text)
 object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
 release 1
-x 16
+x 6
 y 148
-w 84
+w 94
 h 20
 font "helvetica-medium-r-12.0"
 fgColor index 14
 bgColor index 3
 value {
-  "Frame Timeout"
+  "Trigger Selector"
 }
-endObjectProperties
-
-# (Text Control)
-object activeXTextDspClass
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 104
-y 148
-w 60
-h 20
-controlPv "$(P)$(R)FRAME_RETENTION"
-font "helvetica-medium-r-12.0"
-fgColor index 25
-fgAlarm
-bgColor index 5
-editable
-motifWidget
-limitsFromDb
-nullColor index 40
-smartRefresh
-changeValOnLoseFocus
-autoSelect
-newPos
-objType "controls"
 endObjectProperties
 
 # (Text Monitor)
@@ -532,7 +355,7 @@ x 260
 y 100
 w 76
 h 20
-controlPv "$(P)$(R)RESENT_PKTS_RBV"
+controlPv "$(P)$(R)GC_StatPacketResent_RBV"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
 fgColor index 15
@@ -570,15 +393,15 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 16
+x 6
 y 100
-w 84
+w 94
 h 20
 font "helvetica-medium-r-12.0"
 fgColor index 14
 bgColor index 3
 value {
-  "Packet Resend"
+  "Line Selector"
 }
 endObjectProperties
 
@@ -597,40 +420,9 @@ bgColor index 5
 inconsistentColor index 40
 topShadowColor index 1
 botShadowColor index 11
-controlPv "$(P)$(R)PKT_RESEND"
+controlPv "$(P)$(R)GC_LineSelector"
+indicatorPv "$(P)$(R)GC_LineSelector_RBV"
 font "helvetica-medium-r-12.0"
-endObjectProperties
-
-# (Related Display)
-object relatedDisplayClass
-beginObjectProperties
-major 4
-minor 4
-release 0
-x 0
-y 100
-w 16
-h 20
-fgColor index 14
-bgColor index 3
-topShadowColor index 1
-botShadowColor index 11
-font "helvetica-medium-r-12.0"
-xPosOffset -100
-yPosOffset -148
-useFocus
-buttonLabel "?"
-numPvs 4
-numDsps 1
-displayFileName {
-  0 "arvScreens/aravisHelp.edl"
-}
-setPosition {
-  0 "button"
-}
-symbols {
-  0 "desc0=Enables code that requests resend of missing packets.,desc1='',desc2='',desc3='',desc4='',desc5=''"
-}
 endObjectProperties
 
 # (Text Monitor)
@@ -643,7 +435,7 @@ x 260
 y 124
 w 76
 h 20
-controlPv "$(P)$(R)MISSING_PKTS_RBV"
+controlPv "$(P)$(R)GC_StatPacketMissed_RBV"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
 fgColor index 16
@@ -657,79 +449,21 @@ newPos
 objType "monitors"
 endObjectProperties
 
-# (Text Control)
-object activeXTextDspClass
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 104
-y 124
-w 60
-h 20
-controlPv "$(P)$(R)PKT_TIMEOUT"
-font "helvetica-medium-r-12.0"
-fgColor index 25
-fgAlarm
-bgColor index 5
-editable
-motifWidget
-limitsFromDb
-nullColor index 40
-smartRefresh
-changeValOnLoseFocus
-autoSelect
-newPos
-objType "controls"
-endObjectProperties
-
 # (Static Text)
 object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
 release 1
-x 16
+x 6
 y 124
-w 88
+w 94
 h 20
 font "helvetica-medium-r-12.0"
 fgColor index 14
 bgColor index 3
 value {
-  "Packet Timeout"
-}
-endObjectProperties
-
-# (Related Display)
-object relatedDisplayClass
-beginObjectProperties
-major 4
-minor 4
-release 0
-x 0
-y 124
-w 16
-h 20
-fgColor index 14
-bgColor index 3
-topShadowColor index 1
-botShadowColor index 11
-font "helvetica-medium-r-12.0"
-xPosOffset -100
-yPosOffset -148
-useFocus
-buttonLabel "?"
-numPvs 4
-numDsps 1
-displayFileName {
-  0 "arvScreens/aravisHelp.edl"
-}
-setPosition {
-  0 "button"
-}
-symbols {
-  0 "desc0=Packet timeout in us before requesting packet resend.,desc1='Must be greater than the inter-packet delay.',desc2='',desc3='',desc4='',desc5=''"
+  "Line Mode"
 }
 endObjectProperties
 
@@ -751,44 +485,6 @@ value {
 }
 endObjectProperties
 
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 168
-y 124
-w 12
-h 20
-font "helvetica-medium-r-12.0"
-fgColor index 14
-bgColor index 5
-useDisplayBg
-value {
-  "us"
-}
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 168
-y 148
-w 12
-h 20
-font "helvetica-medium-r-12.0"
-fgColor index 14
-bgColor index 5
-useDisplayBg
-value {
-  "us"
-}
-endObjectProperties
-
 # (Text Monitor)
 object activeXTextDspClass:noedit
 beginObjectProperties
@@ -799,7 +495,7 @@ x 104
 y 220
 w 232
 h 20
-controlPv "$(P)$(R)DeviceID_RBV"
+controlPv "$(P)$(R)SerialNumber_RBV"
 font "helvetica-bold-r-12.0"
 fontAlign "center"
 fgColor index 16
@@ -841,7 +537,7 @@ x 104
 y 196
 w 232
 h 20
-controlPv "$(P)$(R)DeviceFirmwareVe_RBV"
+controlPv "$(P)$(R)FirmwareVersion_RBV"
 font "helvetica-bold-r-12.0"
 fontAlign "center"
 fgColor index 16
@@ -1021,5 +717,68 @@ showUnits
 newPos
 objType "monitors"
 noExecuteClipMask
+endObjectProperties
+
+# (Message Button)
+object activeMessageButtonClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 104
+y 28
+w 72
+h 20
+fgColor index 25
+onColor index 6
+offColor index 5
+topShadowColor index 1
+botShadowColor index 11
+controlPv "$(P)$(R)GC_DeviceReset.PROC"
+pressValue "1"
+onLabel "Reconnect"
+offLabel "Reconnect"
+3d
+font "helvetica-medium-r-12.0"
+endObjectProperties
+
+# (Menu Button)
+object activeMenuButtonClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 104
+y 124
+w 72
+h 20
+fgColor index 25
+bgColor index 5
+inconsistentColor index 40
+topShadowColor index 1
+botShadowColor index 11
+controlPv "$(P)$(R)GC_LineMode"
+indicatorPv "$(P)$(R)GC_LineMode_RBV"
+font "helvetica-medium-r-12.0"
+endObjectProperties
+
+# (Menu Button)
+object activeMenuButtonClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 104
+y 148
+w 96
+h 20
+fgColor index 25
+bgColor index 5
+inconsistentColor index 40
+topShadowColor index 1
+botShadowColor index 11
+controlPv "$(P)$(R)GC_TriggerSelector"
+indicatorPv "$(P)$(R)GC_TriggerSelector_RBV"
+font "helvetica-medium-r-12.0"
 endObjectProperties
 
