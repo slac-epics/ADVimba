@@ -6,7 +6,7 @@ release 1
 x 50
 y 50
 w 1784
-h 956
+h 932
 font "helvetica-bold-r-12.0"
 ctlFont "helvetica-bold-r-12.0"
 btnFont "helvetica-bold-r-12.0"
@@ -975,6 +975,25 @@ useDisplayBg
 value {
   "DeviceUserID"
 }
+endObjectProperties
+
+# (Text Update)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 164
+y 320
+w 124
+h 20
+controlPv "$(P)$(R)GC_DeviceUserID_RBV"
+fgColor index 15
+fgAlarm
+bgColor index 12
+fill
+font "helvetica-bold-r-12.0"
+fontAlign "center"
 endObjectProperties
 
 # (Related Display)
@@ -4669,78 +4688,6 @@ setPosition {
   0 "button"
 }
 symbols {
-  0 "desc0=PixelFormat: Format of the pixels provided by the device. It represents all the ,desc1=information provided by PixelCoding; PixelSize; PixelColorFilter combined in a ,desc2=single feature. ,desc3='',desc4='',desc5=''"
-}
-endObjectProperties
-
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 324
-y 676
-w 132
-h 20
-font "helvetica-bold-r-10.0"
-fgColor index 14
-bgColor index 3
-useDisplayBg
-value {
-  "PixelFormat"
-}
-endObjectProperties
-
-# (Menu Button)
-object activeMenuButtonClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 460
-y 676
-w 124
-h 20
-fgColor index 25
-bgColor index 5
-inconsistentColor index 40
-topShadowColor index 1
-botShadowColor index 11
-controlPv "$(P)$(R)GC_PixelFormat"
-indicatorPv "$(P)$(R)GC_PixelFormat_RBV"
-font "helvetica-bold-r-12.0"
-endObjectProperties
-
-# (Related Display)
-object relatedDisplayClass
-beginObjectProperties
-major 4
-minor 4
-release 0
-x 304
-y 700
-w 16
-h 20
-fgColor index 14
-bgColor index 3
-topShadowColor index 1
-botShadowColor index 11
-font "helvetica-bold-r-10.0"
-xPosOffset -100
-yPosOffset -148
-useFocus
-buttonLabel "?"
-numPvs 4
-numDsps 1
-displayFileName {
-  0 "vimbaScreens/vimbaHelp.edl"
-}
-setPosition {
-  0 "button"
-}
-symbols {
   0 "desc0=PixelSize: Total size in bits of a pixel of the image. ,desc1='',desc2='',desc3='',desc4='',desc5=''"
 }
 endObjectProperties
@@ -4753,7 +4700,7 @@ major 4
 minor 1
 release 1
 x 324
-y 700
+y 676
 w 132
 h 20
 font "helvetica-bold-r-10.0"
@@ -4772,7 +4719,7 @@ major 10
 minor 0
 release 0
 x 460
-y 700
+y 676
 w 124
 h 20
 controlPv "$(P)$(R)GC_PixelSize_RBV"
@@ -4791,7 +4738,7 @@ major 4
 minor 4
 release 0
 x 304
-y 724
+y 700
 w 16
 h 20
 fgColor index 14
@@ -4824,7 +4771,7 @@ major 4
 minor 1
 release 1
 x 324
-y 724
+y 700
 w 132
 h 20
 font "helvetica-bold-r-10.0"
@@ -4843,7 +4790,7 @@ major 10
 minor 0
 release 0
 x 460
-y 724
+y 700
 w 124
 h 20
 controlPv "$(P)$(R)GC_PixelColorFilter_RBV"
@@ -7365,78 +7312,6 @@ setPosition {
   0 "button"
 }
 symbols {
-  0 "desc0=AcquisitionFrameRateEnable: Controls if the AcquisitionFrameRate feature is ,desc1=writable and used to control the acquisition rate. Otherwise; the acquisition ,desc2=rate is implicitly controlled by the combination of other features like ,desc3=ExposureTime; etc... ,desc4='',desc5=''"
-}
-endObjectProperties
-
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 916
-y 196
-w 132
-h 20
-font "helvetica-bold-r-10.0"
-fgColor index 14
-bgColor index 3
-useDisplayBg
-value {
-  "AcquisitionFrameRateEnable"
-}
-endObjectProperties
-
-# (Menu Button)
-object activeMenuButtonClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 1052
-y 196
-w 124
-h 20
-fgColor index 25
-bgColor index 5
-inconsistentColor index 40
-topShadowColor index 1
-botShadowColor index 11
-controlPv "$(P)$(R)GC_AcqFraRateEnable"
-indicatorPv "$(P)$(R)GC_AcqFraRateEnable_RBV"
-font "helvetica-bold-r-12.0"
-endObjectProperties
-
-# (Related Display)
-object relatedDisplayClass
-beginObjectProperties
-major 4
-minor 4
-release 0
-x 896
-y 220
-w 16
-h 20
-fgColor index 14
-bgColor index 3
-topShadowColor index 1
-botShadowColor index 11
-font "helvetica-bold-r-10.0"
-xPosOffset -100
-yPosOffset -148
-useFocus
-buttonLabel "?"
-numPvs 4
-numDsps 1
-displayFileName {
-  0 "vimbaScreens/vimbaHelp.edl"
-}
-setPosition {
-  0 "button"
-}
-symbols {
   0 "desc0=AcquisitionFrameRateMode: Defines the interconnection between the ,desc1=AcquisitionFrameRate affecting features. ,desc2='',desc3='',desc4='',desc5=''"
 }
 endObjectProperties
@@ -7449,7 +7324,7 @@ major 4
 minor 1
 release 1
 x 916
-y 220
+y 196
 w 132
 h 20
 font "helvetica-bold-r-10.0"
@@ -7468,7 +7343,7 @@ major 4
 minor 0
 release 0
 x 1052
-y 220
+y 196
 w 124
 h 20
 fgColor index 25
@@ -7488,103 +7363,7 @@ major 4
 minor 4
 release 0
 x 896
-y 244
-w 16
-h 20
-fgColor index 14
-bgColor index 3
-topShadowColor index 1
-botShadowColor index 11
-font "helvetica-bold-r-10.0"
-xPosOffset -100
-yPosOffset -148
-useFocus
-buttonLabel "?"
-numPvs 4
-numDsps 1
-displayFileName {
-  0 "vimbaScreens/vimbaHelp.edl"
-}
-setPosition {
-  0 "button"
-}
-symbols {
-  0 "desc0=AcquisitionFrameRate: Controls the acquisition rate (in Hertz) at which the ,desc1=frames are captured. ,desc2='',desc3='',desc4='',desc5=''"
-}
-endObjectProperties
-
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 916
-y 244
-w 132
-h 20
-font "helvetica-bold-r-10.0"
-fgColor index 14
-bgColor index 3
-useDisplayBg
-value {
-  "AcquisitionFrameRate"
-}
-endObjectProperties
-
-# (Text Control)
-object activeXTextDspClass
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 1052
-y 244
-w 60
-h 20
-controlPv "$(P)$(R)GC_AcqFrameRate"
-font "helvetica-bold-r-12.0"
-fgColor index 25
-bgColor index 5
-editable
-motifWidget
-limitsFromDb
-nullColor index 40
-smartRefresh
-changeValOnLoseFocus
-autoSelect
-newPos
-objType "controls"
-endObjectProperties
-
-# (Textupdate)
-object TextupdateClass
-beginObjectProperties
-major 10
-minor 0
-release 0
-x 1120
-y 244
-w 60
-h 20
-controlPv "$(P)$(R)GC_AcqFrameRate_RBV"
-fgColor index 15
-fgAlarm
-bgColor index 12
-fill
-font "helvetica-bold-r-12.0"
-fontAlign "center"
-endObjectProperties
-
-# (Related Display)
-object relatedDisplayClass
-beginObjectProperties
-major 4
-minor 4
-release 0
-x 896
-y 268
+y 220
 w 16
 h 20
 fgColor index 14
@@ -7617,7 +7396,7 @@ major 4
 minor 1
 release 1
 x 916
-y 268
+y 220
 w 132
 h 20
 font "helvetica-bold-r-10.0"
@@ -7636,7 +7415,7 @@ major 4
 minor 0
 release 0
 x 1052
-y 268
+y 220
 w 124
 h 20
 fgColor index 25
@@ -7656,7 +7435,7 @@ major 4
 minor 4
 release 0
 x 896
-y 292
+y 244
 w 16
 h 20
 fgColor index 14
@@ -7689,7 +7468,7 @@ major 4
 minor 1
 release 1
 x 916
-y 292
+y 244
 w 132
 h 20
 font "helvetica-bold-r-10.0"
@@ -7708,7 +7487,7 @@ major 10
 minor 0
 release 0
 x 1052
-y 292
+y 244
 w 124
 h 20
 controlPv "$(P)$(R)GC_AcquisitionStatus_RBV"
@@ -7727,7 +7506,7 @@ major 4
 minor 4
 release 0
 x 896
-y 316
+y 268
 w 16
 h 20
 fgColor index 14
@@ -7760,7 +7539,7 @@ major 4
 minor 1
 release 1
 x 916
-y 316
+y 268
 w 132
 h 20
 font "helvetica-bold-r-10.0"
@@ -7779,7 +7558,7 @@ major 4
 minor 0
 release 0
 x 1052
-y 316
+y 268
 w 124
 h 20
 fgColor index 25
@@ -7799,226 +7578,7 @@ major 4
 minor 4
 release 0
 x 896
-y 340
-w 16
-h 20
-fgColor index 14
-bgColor index 3
-topShadowColor index 1
-botShadowColor index 11
-font "helvetica-bold-r-10.0"
-xPosOffset -100
-yPosOffset -148
-useFocus
-buttonLabel "?"
-numPvs 4
-numDsps 1
-displayFileName {
-  0 "vimbaScreens/vimbaHelp.edl"
-}
-setPosition {
-  0 "button"
-}
-symbols {
-  0 "desc0=TriggerMode: Controls if the selected trigger is active. ,desc1='',desc2='',desc3='',desc4='',desc5=''"
-}
-endObjectProperties
-
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 916
-y 340
-w 132
-h 20
-font "helvetica-bold-r-10.0"
-fgColor index 14
-bgColor index 3
-useDisplayBg
-value {
-  "TriggerMode"
-}
-endObjectProperties
-
-# (Menu Button)
-object activeMenuButtonClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 1052
-y 340
-w 124
-h 20
-fgColor index 25
-bgColor index 5
-inconsistentColor index 40
-topShadowColor index 1
-botShadowColor index 11
-controlPv "$(P)$(R)GC_TriggerMode"
-indicatorPv "$(P)$(R)GC_TriggerMode_RBV"
-font "helvetica-bold-r-12.0"
-endObjectProperties
-
-# (Related Display)
-object relatedDisplayClass
-beginObjectProperties
-major 4
-minor 4
-release 0
-x 896
-y 364
-w 16
-h 20
-fgColor index 14
-bgColor index 3
-topShadowColor index 1
-botShadowColor index 11
-font "helvetica-bold-r-10.0"
-xPosOffset -100
-yPosOffset -148
-useFocus
-buttonLabel "?"
-numPvs 4
-numDsps 1
-displayFileName {
-  0 "vimbaScreens/vimbaHelp.edl"
-}
-setPosition {
-  0 "button"
-}
-symbols {
-  0 "desc0=TriggerSoftware: Generates an internal trigger. TriggerSource must be set to ,desc1=Software. ,desc2='',desc3='',desc4='',desc5=''"
-}
-endObjectProperties
-
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 916
-y 364
-w 132
-h 20
-font "helvetica-bold-r-10.0"
-fgColor index 14
-bgColor index 3
-useDisplayBg
-value {
-  "TriggerSoftware"
-}
-endObjectProperties
-
-# (Message Button)
-object activeMessageButtonClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 1052
-y 364
-w 124
-h 20
-fgColor index 25
-onColor index 3
-offColor index 3
-topShadowColor index 1
-botShadowColor index 11
-controlPv "$(P)$(R)GC_TriggerSoftware.PROC"
-pressValue "1"
-onLabel "TriggerSoftware"
-offLabel "TriggerSoftware"
-3d
-font "helvetica-bold-r-12.0"
-endObjectProperties
-
-# (Related Display)
-object relatedDisplayClass
-beginObjectProperties
-major 4
-minor 4
-release 0
-x 896
-y 388
-w 16
-h 20
-fgColor index 14
-bgColor index 3
-topShadowColor index 1
-botShadowColor index 11
-font "helvetica-bold-r-10.0"
-xPosOffset -100
-yPosOffset -148
-useFocus
-buttonLabel "?"
-numPvs 4
-numDsps 1
-displayFileName {
-  0 "vimbaScreens/vimbaHelp.edl"
-}
-setPosition {
-  0 "button"
-}
-symbols {
-  0 "desc0=TriggerSource: Specifies the internal signal or physical input Line to use as ,desc1=the trigger source. The selected trigger must have its TriggerMode set to On. ,desc2='',desc3='',desc4='',desc5=''"
-}
-endObjectProperties
-
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 916
-y 388
-w 132
-h 20
-font "helvetica-bold-r-10.0"
-fgColor index 14
-bgColor index 3
-useDisplayBg
-value {
-  "TriggerSource"
-}
-endObjectProperties
-
-# (Menu Button)
-object activeMenuButtonClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 1052
-y 388
-w 124
-h 20
-fgColor index 25
-bgColor index 5
-inconsistentColor index 40
-topShadowColor index 1
-botShadowColor index 11
-controlPv "$(P)$(R)GC_TriggerSource"
-indicatorPv "$(P)$(R)GC_TriggerSource_RBV"
-font "helvetica-bold-r-12.0"
-endObjectProperties
-
-# (Related Display)
-object relatedDisplayClass
-beginObjectProperties
-major 4
-minor 4
-release 0
-x 896
-y 412
+y 292
 w 16
 h 20
 fgColor index 14
@@ -8051,7 +7611,7 @@ major 4
 minor 1
 release 1
 x 916
-y 412
+y 292
 w 132
 h 20
 font "helvetica-bold-r-10.0"
@@ -8070,7 +7630,7 @@ major 4
 minor 0
 release 0
 x 1052
-y 412
+y 292
 w 124
 h 20
 fgColor index 25
@@ -8090,7 +7650,7 @@ major 4
 minor 4
 release 0
 x 896
-y 436
+y 316
 w 16
 h 20
 fgColor index 14
@@ -8123,7 +7683,7 @@ major 4
 minor 1
 release 1
 x 916
-y 436
+y 316
 w 132
 h 20
 font "helvetica-bold-r-10.0"
@@ -8142,7 +7702,7 @@ major 4
 minor 7
 release 0
 x 1052
-y 436
+y 316
 w 60
 h 20
 controlPv "$(P)$(R)GC_TriggerDelay"
@@ -8167,7 +7727,7 @@ major 10
 minor 0
 release 0
 x 1120
-y 436
+y 316
 w 60
 h 20
 controlPv "$(P)$(R)GC_TriggerDelay_RBV"
@@ -8186,79 +7746,7 @@ major 4
 minor 4
 release 0
 x 896
-y 460
-w 16
-h 20
-fgColor index 14
-bgColor index 3
-topShadowColor index 1
-botShadowColor index 11
-font "helvetica-bold-r-10.0"
-xPosOffset -100
-yPosOffset -148
-useFocus
-buttonLabel "?"
-numPvs 4
-numDsps 1
-displayFileName {
-  0 "vimbaScreens/vimbaHelp.edl"
-}
-setPosition {
-  0 "button"
-}
-symbols {
-  0 "desc0=ExposureMode: Sets the operation mode of the Exposure (or shutter). ,desc1='',desc2='',desc3='',desc4='',desc5=''"
-}
-endObjectProperties
-
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 916
-y 460
-w 132
-h 20
-font "helvetica-bold-r-10.0"
-fgColor index 14
-bgColor index 3
-useDisplayBg
-value {
-  "ExposureMode"
-}
-endObjectProperties
-
-# (Menu Button)
-object activeMenuButtonClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 1052
-y 460
-w 124
-h 20
-fgColor index 25
-bgColor index 5
-inconsistentColor index 40
-topShadowColor index 1
-botShadowColor index 11
-controlPv "$(P)$(R)GC_ExposureMode"
-indicatorPv "$(P)$(R)GC_ExposureMode_RBV"
-font "helvetica-bold-r-12.0"
-endObjectProperties
-
-# (Related Display)
-object relatedDisplayClass
-beginObjectProperties
-major 4
-minor 4
-release 0
-x 896
-y 484
+y 340
 w 16
 h 20
 fgColor index 14
@@ -8291,7 +7779,7 @@ major 4
 minor 1
 release 1
 x 916
-y 484
+y 340
 w 132
 h 20
 font "helvetica-bold-r-10.0"
@@ -8310,7 +7798,7 @@ major 4
 minor 7
 release 0
 x 1052
-y 484
+y 340
 w 60
 h 20
 controlPv "$(P)$(R)GC_ExposureTime"
@@ -8335,7 +7823,7 @@ major 10
 minor 0
 release 0
 x 1120
-y 484
+y 340
 w 60
 h 20
 controlPv "$(P)$(R)GC_ExposureTime_RBV"
@@ -8345,78 +7833,6 @@ bgColor index 12
 fill
 font "helvetica-bold-r-12.0"
 fontAlign "center"
-endObjectProperties
-
-# (Related Display)
-object relatedDisplayClass
-beginObjectProperties
-major 4
-minor 4
-release 0
-x 896
-y 508
-w 16
-h 20
-fgColor index 14
-bgColor index 3
-topShadowColor index 1
-botShadowColor index 11
-font "helvetica-bold-r-10.0"
-xPosOffset -100
-yPosOffset -148
-useFocus
-buttonLabel "?"
-numPvs 4
-numDsps 1
-displayFileName {
-  0 "vimbaScreens/vimbaHelp.edl"
-}
-setPosition {
-  0 "button"
-}
-symbols {
-  0 "desc0=ExposureAuto: Sets the auto exposure mode.The output of the auto exposure ,desc1=function affects the whole image ,desc2='',desc3='',desc4='',desc5=''"
-}
-endObjectProperties
-
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 916
-y 508
-w 132
-h 20
-font "helvetica-bold-r-10.0"
-fgColor index 14
-bgColor index 3
-useDisplayBg
-value {
-  "ExposureAuto"
-}
-endObjectProperties
-
-# (Menu Button)
-object activeMenuButtonClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 1052
-y 508
-w 124
-h 20
-fgColor index 25
-bgColor index 5
-inconsistentColor index 40
-topShadowColor index 1
-botShadowColor index 11
-controlPv "$(P)$(R)GC_ExposureAuto"
-indicatorPv "$(P)$(R)GC_ExposureAuto_RBV"
-font "helvetica-bold-r-12.0"
 endObjectProperties
 
 # (Static Text)
@@ -8446,7 +7862,7 @@ major 4
 minor 0
 release 0
 x 892
-y 548
+y 380
 w 288
 h 224
 lineColor index 14
@@ -8461,7 +7877,7 @@ major 4
 minor 4
 release 0
 x 896
-y 556
+y 388
 w 16
 h 20
 fgColor index 14
@@ -8494,7 +7910,7 @@ major 4
 minor 1
 release 1
 x 916
-y 556
+y 388
 w 132
 h 20
 font "helvetica-bold-r-10.0"
@@ -8513,7 +7929,7 @@ major 4
 minor 0
 release 0
 x 1052
-y 556
+y 388
 w 124
 h 20
 fgColor index 25
@@ -8533,7 +7949,7 @@ major 4
 minor 4
 release 0
 x 896
-y 580
+y 412
 w 16
 h 20
 fgColor index 14
@@ -8566,7 +7982,7 @@ major 4
 minor 1
 release 1
 x 916
-y 580
+y 412
 w 132
 h 20
 font "helvetica-bold-r-10.0"
@@ -8585,7 +8001,7 @@ major 4
 minor 7
 release 0
 x 1052
-y 580
+y 412
 w 60
 h 20
 controlPv "$(P)$(R)GC_Gain"
@@ -8610,7 +8026,7 @@ major 10
 minor 0
 release 0
 x 1120
-y 580
+y 412
 w 60
 h 20
 controlPv "$(P)$(R)GC_Gain_RBV"
@@ -8629,79 +8045,7 @@ major 4
 minor 4
 release 0
 x 896
-y 604
-w 16
-h 20
-fgColor index 14
-bgColor index 3
-topShadowColor index 1
-botShadowColor index 11
-font "helvetica-bold-r-10.0"
-xPosOffset -100
-yPosOffset -148
-useFocus
-buttonLabel "?"
-numPvs 4
-numDsps 1
-displayFileName {
-  0 "vimbaScreens/vimbaHelp.edl"
-}
-setPosition {
-  0 "button"
-}
-symbols {
-  0 "desc0=GainAuto: Sets the auto gain mode.The output of the auto gain function affects ,desc1=the whole image ,desc2='',desc3='',desc4='',desc5=''"
-}
-endObjectProperties
-
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 916
-y 604
-w 132
-h 20
-font "helvetica-bold-r-10.0"
-fgColor index 14
-bgColor index 3
-useDisplayBg
-value {
-  "GainAuto"
-}
-endObjectProperties
-
-# (Menu Button)
-object activeMenuButtonClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 1052
-y 604
-w 124
-h 20
-fgColor index 25
-bgColor index 5
-inconsistentColor index 40
-topShadowColor index 1
-botShadowColor index 11
-controlPv "$(P)$(R)GC_GainAuto"
-indicatorPv "$(P)$(R)GC_GainAuto_RBV"
-font "helvetica-bold-r-12.0"
-endObjectProperties
-
-# (Related Display)
-object relatedDisplayClass
-beginObjectProperties
-major 4
-minor 4
-release 0
-x 896
-y 628
+y 436
 w 16
 h 20
 fgColor index 14
@@ -8734,7 +8078,7 @@ major 4
 minor 1
 release 1
 x 916
-y 628
+y 436
 w 132
 h 20
 font "helvetica-bold-r-10.0"
@@ -8753,7 +8097,7 @@ major 4
 minor 0
 release 0
 x 1052
-y 628
+y 436
 w 124
 h 20
 fgColor index 25
@@ -8773,7 +8117,7 @@ major 4
 minor 4
 release 0
 x 896
-y 652
+y 460
 w 16
 h 20
 fgColor index 14
@@ -8806,7 +8150,7 @@ major 4
 minor 1
 release 1
 x 916
-y 652
+y 460
 w 132
 h 20
 font "helvetica-bold-r-10.0"
@@ -8825,7 +8169,7 @@ major 4
 minor 7
 release 0
 x 1052
-y 652
+y 460
 w 60
 h 20
 controlPv "$(P)$(R)GC_BlackLevel"
@@ -8850,7 +8194,7 @@ major 10
 minor 0
 release 0
 x 1120
-y 652
+y 460
 w 60
 h 20
 controlPv "$(P)$(R)GC_BlackLevel_RBV"
@@ -8869,7 +8213,7 @@ major 4
 minor 4
 release 0
 x 896
-y 676
+y 484
 w 16
 h 20
 fgColor index 14
@@ -8902,7 +8246,7 @@ major 4
 minor 1
 release 1
 x 916
-y 676
+y 484
 w 132
 h 20
 font "helvetica-bold-r-10.0"
@@ -8921,7 +8265,7 @@ major 4
 minor 0
 release 0
 x 1052
-y 676
+y 484
 w 124
 h 20
 fgColor index 25
@@ -8941,7 +8285,7 @@ major 4
 minor 4
 release 0
 x 896
-y 700
+y 508
 w 16
 h 20
 fgColor index 14
@@ -8974,7 +8318,7 @@ major 4
 minor 1
 release 1
 x 916
-y 700
+y 508
 w 132
 h 20
 font "helvetica-bold-r-10.0"
@@ -8993,7 +8337,7 @@ major 4
 minor 7
 release 0
 x 1052
-y 700
+y 508
 w 60
 h 20
 controlPv "$(P)$(R)GC_BalanceRatio"
@@ -9018,7 +8362,7 @@ major 10
 minor 0
 release 0
 x 1120
-y 700
+y 508
 w 60
 h 20
 controlPv "$(P)$(R)GC_BalanceRatio_RBV"
@@ -9037,7 +8381,7 @@ major 4
 minor 4
 release 0
 x 896
-y 724
+y 532
 w 16
 h 20
 fgColor index 14
@@ -9070,7 +8414,7 @@ major 4
 minor 1
 release 1
 x 916
-y 724
+y 532
 w 132
 h 20
 font "helvetica-bold-r-10.0"
@@ -9089,7 +8433,7 @@ major 4
 minor 0
 release 0
 x 1052
-y 724
+y 532
 w 124
 h 20
 fgColor index 25
@@ -9109,7 +8453,7 @@ major 4
 minor 4
 release 0
 x 896
-y 748
+y 556
 w 16
 h 20
 fgColor index 14
@@ -9142,7 +8486,7 @@ major 4
 minor 1
 release 1
 x 916
-y 748
+y 556
 w 132
 h 20
 font "helvetica-bold-r-10.0"
@@ -9161,7 +8505,7 @@ major 4
 minor 7
 release 0
 x 1052
-y 748
+y 556
 w 60
 h 20
 controlPv "$(P)$(R)GC_Gamma"
@@ -9186,7 +8530,7 @@ major 10
 minor 0
 release 0
 x 1120
-y 748
+y 556
 w 60
 h 20
 controlPv "$(P)$(R)GC_Gamma_RBV"
@@ -9205,7 +8549,7 @@ major 4
 minor 1
 release 1
 x 892
-y 540
+y 372
 w 150
 h 14
 font "helvetica-medium-r-12.0"
@@ -9225,7 +8569,7 @@ major 4
 minor 0
 release 0
 x 892
-y 788
+y 596
 w 288
 h 152
 lineColor index 14
@@ -9240,7 +8584,7 @@ major 4
 minor 4
 release 0
 x 896
-y 796
+y 604
 w 16
 h 20
 fgColor index 14
@@ -9273,7 +8617,7 @@ major 4
 minor 1
 release 1
 x 916
-y 796
+y 604
 w 132
 h 20
 font "helvetica-bold-r-10.0"
@@ -9292,7 +8636,7 @@ major 4
 minor 7
 release 0
 x 1052
-y 796
+y 604
 w 60
 h 20
 controlPv "$(P)$(R)GC_Hue"
@@ -9317,7 +8661,7 @@ major 10
 minor 0
 release 0
 x 1120
-y 796
+y 604
 w 60
 h 20
 controlPv "$(P)$(R)GC_Hue_RBV"
@@ -9336,7 +8680,7 @@ major 4
 minor 4
 release 0
 x 896
-y 820
+y 628
 w 16
 h 20
 fgColor index 14
@@ -9369,7 +8713,7 @@ major 4
 minor 1
 release 1
 x 916
-y 820
+y 628
 w 132
 h 20
 font "helvetica-bold-r-10.0"
@@ -9388,7 +8732,7 @@ major 4
 minor 7
 release 0
 x 1052
-y 820
+y 628
 w 60
 h 20
 controlPv "$(P)$(R)GC_Saturation"
@@ -9413,7 +8757,7 @@ major 10
 minor 0
 release 0
 x 1120
-y 820
+y 628
 w 60
 h 20
 controlPv "$(P)$(R)GC_Saturation_RBV"
@@ -9432,7 +8776,7 @@ major 4
 minor 4
 release 0
 x 896
-y 844
+y 652
 w 16
 h 20
 fgColor index 14
@@ -9465,7 +8809,7 @@ major 4
 minor 1
 release 1
 x 916
-y 844
+y 652
 w 132
 h 20
 font "helvetica-bold-r-10.0"
@@ -9484,7 +8828,7 @@ major 4
 minor 0
 release 0
 x 1052
-y 844
+y 652
 w 124
 h 20
 fgColor index 25
@@ -9504,7 +8848,7 @@ major 4
 minor 4
 release 0
 x 896
-y 868
+y 676
 w 16
 h 20
 fgColor index 14
@@ -9537,7 +8881,7 @@ major 4
 minor 1
 release 1
 x 916
-y 868
+y 676
 w 132
 h 20
 font "helvetica-bold-r-10.0"
@@ -9556,7 +8900,7 @@ major 4
 minor 0
 release 0
 x 1052
-y 868
+y 676
 w 124
 h 20
 fgColor index 25
@@ -9576,7 +8920,7 @@ major 4
 minor 4
 release 0
 x 896
-y 892
+y 700
 w 16
 h 20
 fgColor index 14
@@ -9609,7 +8953,7 @@ major 4
 minor 1
 release 1
 x 916
-y 892
+y 700
 w 132
 h 20
 font "helvetica-bold-r-10.0"
@@ -9628,7 +8972,7 @@ major 4
 minor 0
 release 0
 x 1052
-y 892
+y 700
 w 124
 h 20
 fgColor index 25
@@ -9648,7 +8992,7 @@ major 4
 minor 4
 release 0
 x 896
-y 916
+y 724
 w 16
 h 20
 fgColor index 14
@@ -9681,7 +9025,7 @@ major 4
 minor 1
 release 1
 x 916
-y 916
+y 724
 w 132
 h 20
 font "helvetica-bold-r-10.0"
@@ -9700,7 +9044,7 @@ major 4
 minor 7
 release 0
 x 1052
-y 916
+y 724
 w 60
 h 20
 controlPv "$(P)$(R)GC_ColTraValue"
@@ -9725,7 +9069,7 @@ major 10
 minor 0
 release 0
 x 1120
-y 916
+y 724
 w 60
 h 20
 controlPv "$(P)$(R)GC_ColTraValue_RBV"
@@ -9744,7 +9088,7 @@ major 4
 minor 1
 release 1
 x 892
-y 780
+y 588
 w 150
 h 14
 font "helvetica-medium-r-12.0"
@@ -13600,7 +12944,7 @@ major 4
 minor 1
 release 0
 x 1684
-y 928
+y 904
 w 95
 h 25
 fgColor index 46

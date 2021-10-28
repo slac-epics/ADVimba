@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 188
-y 1984
+x 1574
+y 718
 w 390
 h 110
 font "helvetica-bold-r-12.0"
@@ -70,7 +70,7 @@ x 90
 y 24
 w 92
 h 20
-controlPv "$(P)$(R)COMPLETED_RBV"
+controlPv "$(P)$(R)GC_StatFrameDelivered_RBV"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
 fgColor index 15
@@ -99,7 +99,7 @@ fgColor index 14
 bgColor index 3
 useDisplayBg
 value {
-  "Completed"
+  "Delivered"
 }
 endObjectProperties
 
@@ -113,7 +113,7 @@ x 90
 y 48
 w 92
 h 20
-controlPv "$(P)$(R)FAILURES_RBV"
+controlPv "$(P)$(R)GC_StatFrameDropped_RBV"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
 fgColor index 15
@@ -142,7 +142,7 @@ fgColor index 14
 bgColor index 3
 useDisplayBg
 value {
-  "Failures"
+  "Dropped"
 }
 endObjectProperties
 
@@ -156,7 +156,7 @@ x 90
 y 72
 w 92
 h 20
-controlPv "$(P)$(R)UNDERRUNS_RBV"
+controlPv "$(P)$(R)GC_StatFrameUnderrun_RBV"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
 fgColor index 15
@@ -195,9 +195,9 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 208
+x 195
 y 72
-w 84
+w 97
 h 20
 font "helvetica-medium-r-12.0"
 fgColor index 14
@@ -223,7 +223,7 @@ onColor index 6
 offColor index 5
 topShadowColor index 1
 botShadowColor index 11
-controlPv "$(P)$(R)RESET.PROC"
+controlPv "$(P)$(R)GC_DeviceReset.PROC"
 pressValue "1"
 onLabel "Reconnect"
 offLabel "Reconnect"
@@ -237,16 +237,16 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 208
+x 195
 y 48
-w 84
+w 97
 h 20
 font "helvetica-medium-r-12.0"
 fgColor index 14
 bgColor index 3
 useDisplayBg
 value {
-  "Left shift data"
+  "Trigger Source"
 }
 endObjectProperties
 
@@ -265,105 +265,9 @@ bgColor index 5
 inconsistentColor index 40
 topShadowColor index 1
 botShadowColor index 11
-controlPv "$(P)$(R)LEFTSHIFT"
-indicatorPv "$(P)$(R)LEFTSHIFT_RBV"
+controlPv "$(P)$(R)TriggerSource"
+indicatorPv "$(P)$(R)TriggerSource_RBV"
 font "helvetica-medium-r-12.0"
-endObjectProperties
-
-# (Related Display)
-object relatedDisplayClass
-beginObjectProperties
-major 4
-minor 4
-release 0
-x 192
-y 72
-w 12
-h 20
-fgColor index 14
-bgColor index 3
-topShadowColor index 1
-botShadowColor index 11
-font "helvetica-medium-r-12.0"
-xPosOffset -100
-yPosOffset -85
-useFocus
-buttonLabel "?"
-numPvs 4
-numDsps 1
-displayFileName {
-  0 "arvScreens/aravisHelp.edl"
-}
-setPosition {
-  0 "button"
-}
-symbols {
-  0 "desc0=Click this button if your camera stops communicating or acquiring.,desc1=It will do a reconnect,desc2='',desc3='',desc4='',desc5=''"
-}
-endObjectProperties
-
-# (Related Display)
-object relatedDisplayClass
-beginObjectProperties
-major 4
-minor 4
-release 0
-x 192
-y 48
-w 12
-h 20
-fgColor index 14
-bgColor index 3
-topShadowColor index 1
-botShadowColor index 11
-font "helvetica-medium-r-12.0"
-xPosOffset -100
-yPosOffset -85
-useFocus
-buttonLabel "?"
-numPvs 4
-numDsps 1
-displayFileName {
-  0 "arvScreens/aravisHelp.edl"
-}
-setPosition {
-  0 "button"
-}
-symbols {
-  0 "desc0=If set to Yes: 10 12 and 14 bit frames will be left shifted so they occupy the most,desc1=significant bits of the 16 bit frame,desc2='',desc3='',desc4='',desc5=''"
-}
-endObjectProperties
-
-# (Related Display)
-object relatedDisplayClass
-beginObjectProperties
-major 4
-minor 4
-release 0
-x 192
-y 24
-w 12
-h 20
-fgColor index 14
-bgColor index 3
-topShadowColor index 1
-botShadowColor index 11
-font "helvetica-medium-r-12.0"
-xPosOffset -100
-yPosOffset -85
-useFocus
-buttonLabel "?"
-numPvs 4
-numDsps 1
-displayFileName {
-  0 "arvScreens/aravisHelp.edl"
-}
-setPosition {
-  0 "button"
-}
-symbols {
-  0 "desc0=Set to Yes to get feature value updates periodically ,desc1=(never more than one feature every 5ms),desc2=Set to No if you are getting performance issues,desc3='',desc4='',desc5=''"
-}
 endObjectProperties
 
 # (Static Text)
@@ -372,16 +276,16 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 208
+x 195
 y 24
-w 84
+w 97
 h 20
 font "helvetica-medium-r-12.0"
 fgColor index 14
 bgColor index 3
 useDisplayBg
 value {
-  "Get features"
+  "Acq Rate Enable"
 }
 endObjectProperties
 
@@ -400,8 +304,8 @@ bgColor index 5
 inconsistentColor index 40
 topShadowColor index 1
 botShadowColor index 11
-controlPv "$(P)$(R)GETFEATURES"
-indicatorPv "$(P)$(R)GETFEATURES_RBV"
+controlPv "$(P)$(R)FrameRateEnable"
+indicatorPv "$(P)$(R)FrameRateEnable_RBV"
 font "helvetica-medium-r-12.0"
 endObjectProperties
 

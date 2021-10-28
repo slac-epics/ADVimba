@@ -1,4 +1,18 @@
-file "ADGenICam_settings.req", P=$(P), R=$(R)
+# ADGenICam_settings.req includes ADBase_settings, which seems to be OK
+# because of the info in the .db file.  So we just include the settings from
+# ADGenICam_settings here.
+$(P)$(R)FrameRateEnable
+$(P)$(R)TriggerSource
+$(P)$(R)TriggerOverlap
+$(P)$(R)ExposureMode
+$(P)$(R)ExposureAuto
+$(P)$(R)GainAuto
+$(P)$(R)PixelFormat
+# ADVimba_settings:
 $(P)$(R)TimeStampMode
 $(P)$(R)UniqueIdMode
 $(P)$(R)ConvertPixelFormat
+# SLAC settings:
+$(P)$(R)XmitRate
+$(P)$(R)CamProcDelay
+$(P)$(R)DriverProcDelay

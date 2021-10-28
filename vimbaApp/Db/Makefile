@@ -11,6 +11,8 @@ DB += $(patsubst ../%, %, $(wildcard ../*.template))
 
 DB += $(patsubst ../%, %, $(wildcard ../*.env))
 
+REQ += vimba.req
+
 include $(TOP)/configure/RULES
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE

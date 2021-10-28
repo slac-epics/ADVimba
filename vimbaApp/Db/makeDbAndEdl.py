@@ -152,7 +152,7 @@ a_autosaveFields		= 'DESC LOLO LOW HIGH HIHI LLSV LSV HSV HHSV EGU TSE PREC'
 b_autosaveFields		= 'DESC ZSV OSV TSE'
 long_autosaveFields		= 'DESC LOLO LOW HIGH HIHI LLSV LSV HSV HHSV EGU TSE'
 mbb_autosaveFields		= 'DESC ZRSV ONSV TWSV THSV FRSV FVSV SXSV SVSV EISV NISV TESV ELSV TVSV TTSV FTSV FFSV TSE'
-string_autosaveFields	= 'DESC TSE'
+string_autosaveFields	        = 'DESC TSE'
 
 # Create CamModel and CamType related PV's for navigation and labeling
 print 'record(stringin, "$(P)$(R)CamModel") {'
@@ -190,9 +190,16 @@ def	isNodeReadOnly( node ):
             return isNodeReadOnly( regNode )
     return False
 
+ADGenICam_nodes = ['AcquisitionFrameRate', 'AcquisitionFrameRateEnable',
+                   'TriggerSource', 'TriggerOverlap', 'TriggerSoftware',
+                   'TriggerMode', 'ExposureMode', 'ExposureAuto', 'GainAuto',
+                   'PixelFormat']
 # for each node
 for node in doneNodes:
     nodeName = str(node.getAttribute("Name"))
+    if nodeName in ADGenICam_nodes:
+        print >>sys.stderr, "Skipping %s" % nodeName
+        continue
     ro = isNodeReadOnly( node )
     if node.nodeName in ["Integer", "IntConverter", "IntSwissKnife"]:
         print('record(%s, "$(P)$(R)%s_RBV") {' % (GCIntegerInputRecordType, records[nodeName]))
@@ -200,7 +207,7 @@ for node in doneNodes:
         print '  field(INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))GC_I_%s")' % nodeName
         print '  field(SCAN, "I/O Intr")'
         print '  field(DISA, "0")'        
-#MCB        print '  info( autosaveFields, "%s" )' % long_autosaveFields
+        print '  info( autosaveFields, "%s" )' % long_autosaveFields
         print '}'
         print
         if ro:
@@ -209,7 +216,7 @@ for node in doneNodes:
         print '  field(DTYP, "asynInt64")'
         print '  field(OUT,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))GC_I_%s")' % nodeName
         print '  field(DISA, "0")'
-#MCB        print '  info( autosaveFields, "%s PINI VAL" )' % long_autosaveFields
+        print '  info( autosaveFields, "%s PINI VAL" )' % long_autosaveFields
         print '}'
         print        
     elif node.nodeName in ["Boolean"]:
@@ -220,7 +227,7 @@ for node in doneNodes:
         print '  field(ZNAM, "No")'
         print '  field(ONAM, "Yes")'                        
         print '  field(DISA, "0")'
-#MCB        print '  info( autosaveFields, "%s" )' % b_autosaveFields
+        print '  info( autosaveFields, "%s" )' % b_autosaveFields
         print '}'
         print
         if ro:
@@ -231,7 +238,7 @@ for node in doneNodes:
         print '  field(ZNAM, "No")'
         print '  field(ONAM, "Yes")'                                
         print '  field(DISA, "0")'
-#MCB        print '  info( autosaveFields, "%s PINI VAL" )' % b_autosaveFields
+        print '  info( autosaveFields, "%s PINI VAL" )' % b_autosaveFields
         print '}'
         print           
     elif node.nodeName in ["Float", "Converter", "SwissKnife"]:
@@ -241,7 +248,7 @@ for node in doneNodes:
         print '  field(PREC, "3")'        
         print '  field(SCAN, "I/O Intr")'
         print '  field(DISA, "0")'
-#MCB        print '  info( autosaveFields, "%s" )' % a_autosaveFields
+        print '  info( autosaveFields, "%s" )' % a_autosaveFields
         print '}'
         print    
         if ro:
@@ -251,16 +258,16 @@ for node in doneNodes:
         print '  field(OUT,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))GC_D_%s")' % nodeName
         print '  field(PREC, "3")'
         print '  field(DISA, "0")'
-#MCB        print '  info( autosaveFields, "%s PINI VAL" )' % a_autosaveFields
+        print '  info( autosaveFields, "%s PINI VAL" )' % a_autosaveFields
         print '}'
         print
-    elif node.nodeName in ["StringReg"]:
+    elif node.nodeName in ["StringReg", "String"]:
         print 'record(stringin, "$(P)$(R)%s_RBV") {' % records[nodeName]
         print '  field(DTYP, "asynOctetRead")'
         print '  field(INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))GC_S_%s")' % nodeName
         print '  field(SCAN, "I/O Intr")'
         print '  field(DISA, "0")'
-#MCB        print '  info( autosaveFields, "%s" )' % string_autosaveFields
+        print '  info( autosaveFields, "%s" )' % string_autosaveFields
         print '}'
         print
     elif node.nodeName in ["Command"]:
@@ -268,7 +275,7 @@ for node in doneNodes:
         print '  field(DTYP, "asynInt32")'
         print '  field(OUT,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))GC_C_%s")' % nodeName
         print '  field(DISA, "0")'
-#MCB        print '  info( autosaveFields, "%s" )' % long_autosaveFields
+        print '  info( autosaveFields, "%s" )' % long_autosaveFields
         print '}'
         print         
     elif node.nodeName in ["Enumeration"]:
@@ -296,7 +303,7 @@ for node in doneNodes:
         print enumerations,
         print '  field(SCAN, "I/O Intr")'
         print '  field(DISA, "0")'
-#MCB       print '  info( autosaveFields, "%s" )' % mbb_autosaveFields
+        print '  info( autosaveFields, "%s" )' % mbb_autosaveFields
         print '}'
         print
         if ro:
@@ -307,11 +314,11 @@ for node in doneNodes:
         print '  field(DOL,  "%s")' % defaultVal
         print enumerations,       
         print '  field(DISA, "0")'
-#MCB        print '  info( autosaveFields, "%s PINI VAL" )' % mbb_autosaveFields
+        print '  info( autosaveFields, "%s PINI VAL" )' % mbb_autosaveFields
         print '}'
         print          
     else:
-        print >> sys.stderr, "Don't know what to do with %s" % node.nodeName
+        print >> sys.stderr, "Don't know what to do with %s (%s)" % (nodeName, node.nodeName)
     
 # tidy up
 db_file.close()     
@@ -573,6 +580,9 @@ for name, nodes in structure:
     h = max(y, h)    
     for node in nodes:
         nodeName = str(node.getAttribute("Name"))
+        if nodeName in ADGenICam_nodes:
+            print >>sys.stderr, "Skipping %s" % nodeName
+            continue
         recordName = records[nodeName]
         ro = isNodeReadOnly( node )
         desc = ""
@@ -597,7 +607,7 @@ for name, nodes in structure:
         nx += 20
         text += make_label()
         nx += label_w + 4            
-        if node.nodeName in ["StringReg"] or ro:
+        if node.nodeName in ["StringReg", "String"] or ro:
             text += make_ro()
         elif node.nodeName in ["Integer", "Float", "Converter", "IntConverter", "IntSwissKnife", "SwissKnife"]:  
             text += make_demand()
@@ -608,7 +618,7 @@ for name, nodes in structure:
         elif node.nodeName in ["Command"]:
             text += make_cmd()
         else:
-            print "Don't know what to do with", node.nodeName
+            print "Don't know what to do with %s (%s)" % (nodeName, node.nodeName)
         y += 24
     y += 16
     h = max(y, h)
