@@ -492,7 +492,7 @@ major 4
 minor 7
 release 0
 x 104
-y 220
+y 196
 w 232
 h 20
 controlPv "$(P)$(R)SerialNumber_RBV"
@@ -515,9 +515,9 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 0
-y 220
-w 100
+x 6
+y 196
+w 94
 h 20
 font "helvetica-medium-r-12.0"
 fgColor index 14
@@ -534,7 +534,7 @@ major 4
 minor 7
 release 0
 x 104
-y 196
+y 172
 w 232
 h 20
 controlPv "$(P)$(R)FirmwareVersion_RBV"
@@ -557,9 +557,9 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 0
-y 196
-w 100
+x 6
+y 172
+w 94
 h 20
 font "helvetica-medium-r-12.0"
 fgColor index 14
@@ -576,7 +576,7 @@ major 4
 minor 0
 release 0
 x 8
-y 244
+y 220
 w 204
 h 24
 
@@ -589,7 +589,7 @@ major 4
 minor 4
 release 0
 x 4
-y 244
+y 220
 w 204
 h 24
 fgColor index 14
@@ -601,7 +601,7 @@ buttonLabel "             Model Specific        "
 numPvs 4
 numDsps 1
 displayFileName {
-  0 "gigeScreens/camModel.edl"
+  0 "usbScreens/camModel.edl"
 }
 setPosition {
   0 "button"
@@ -625,7 +625,7 @@ major 4
 minor 7
 release 0
 x 28
-y 248
+y 224
 w 175
 h 16
 controlPv "$(P)$(R)CamModel"
@@ -642,81 +642,6 @@ endObjectProperties
 
 endGroup
 
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 0
-y 172
-w 144
-h 20
-font "helvetica-medium-r-12.0"
-fontAlign "right"
-fgColor index 14
-bgColor index 3
-value {
-  "$(IF) eNet Traffix Rx/Tx:"
-}
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 152
-y 172
-w 88
-h 20
-controlPv "$(IOC):$(IF):RX"
-format "float"
-font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 15
-fgAlarm
-bgColor index 12
-limitsFromDb
-nullColor index 40
-smartRefresh
-fastUpdate
-useHexPrefix
-showUnits
-newPos
-objType "monitors"
-noExecuteClipMask
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 244
-y 172
-w 92
-h 20
-controlPv "$(IOC):$(IF):TX"
-format "float"
-font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 15
-fgAlarm
-bgColor index 12
-limitsFromDb
-nullColor index 40
-smartRefresh
-fastUpdate
-useHexPrefix
-showUnits
-newPos
-objType "monitors"
-noExecuteClipMask
 endObjectProperties
 
 # (Message Button)
@@ -788,19 +713,42 @@ beginObjectProperties
 major 4
 minor 1
 release 0
-x 212
-y 244
-w 126
+x 4
+y 248
+w 204
 h 24
 fgColor index 14
 onColor index 3
 offColor index 3
 topShadowColor index 1
 botShadowColor index 11
-controlPv "$(P)$(R)InitSettings.PROC"
+controlPv "$(P)$(R)InitTrigSettings.PROC"
 pressValue "1"
-onLabel "Init Cam Settings"
-offLabel "Init Cam Settings"
+onLabel "Init Trig Cam Settings"
+offLabel "Init Trig Cam Settings"
+3d
+font "helvetica-bold-r-12.0"
+endObjectProperties
+
+# (Message Button)
+object activeMessageButtonClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 4
+y 276
+w 204
+h 24
+fgColor index 14
+onColor index 3
+offColor index 3
+topShadowColor index 1
+botShadowColor index 11
+controlPv "$(P)$(R)InitFreeRunSettings.PROC"
+pressValue "1"
+onLabel "Init FreeRun Cam Settings"
+offLabel "Init FreeRun Cam Settings"
 3d
 font "helvetica-bold-r-12.0"
 endObjectProperties
