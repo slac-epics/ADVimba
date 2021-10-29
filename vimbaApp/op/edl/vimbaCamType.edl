@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 1459
-y 307
+x 2102
+y 418
 w 400
 h 345
 font "helvetica-bold-r-12.0"
@@ -780,5 +780,28 @@ botShadowColor index 11
 controlPv "$(P)$(R)GC_TriggerSelector"
 indicatorPv "$(P)$(R)GC_TriggerSelector_RBV"
 font "helvetica-medium-r-12.0"
+endObjectProperties
+
+# (Message Button)
+object activeMessageButtonClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 212
+y 244
+w 126
+h 24
+fgColor index 14
+onColor index 3
+offColor index 3
+topShadowColor index 1
+botShadowColor index 11
+controlPv "$(P)$(R)InitSettings.PROC"
+pressValue "1"
+onLabel "Init Cam Settings"
+offLabel "Init Cam Settings"
+3d
+font "helvetica-bold-r-12.0"
 endObjectProperties
 
