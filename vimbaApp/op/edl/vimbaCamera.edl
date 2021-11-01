@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 1574
-y 718
+x 2153
+y 700
 w 390
 h 110
 font "helvetica-bold-r-12.0"
@@ -60,144 +60,15 @@ autoSize
 border
 endObjectProperties
 
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 90
-y 24
-w 92
-h 20
-controlPv "$(P)$(R)GC_StatFrameDelivered_RBV"
-font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 15
-fgAlarm
-bgColor index 12
-limitsFromDb
-nullColor index 40
-smartRefresh
-useHexPrefix
-newPos
-objType "monitors"
-endObjectProperties
-
 # (Static Text)
 object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
 release 1
-x 8
-y 24
-w 76
-h 20
-font "helvetica-medium-r-12.0"
-fgColor index 14
-bgColor index 3
-useDisplayBg
-value {
-  "Delivered"
-}
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 90
-y 48
-w 92
-h 20
-controlPv "$(P)$(R)GC_StatFrameDropped_RBV"
-font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 15
-fgAlarm
-bgColor index 12
-limitsFromDb
-nullColor index 40
-smartRefresh
-useHexPrefix
-newPos
-objType "monitors"
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 8
-y 48
-w 76
-h 20
-font "helvetica-medium-r-12.0"
-fgColor index 14
-bgColor index 3
-useDisplayBg
-value {
-  "Dropped"
-}
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 90
+x 197
 y 72
-w 92
-h 20
-controlPv "$(P)$(R)GC_StatFrameUnderrun_RBV"
-font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 15
-fgAlarm
-bgColor index 12
-limitsFromDb
-nullColor index 40
-smartRefresh
-useHexPrefix
-newPos
-objType "monitors"
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 8
-y 72
-w 76
-h 20
-font "helvetica-medium-r-12.0"
-fgColor index 14
-bgColor index 3
-useDisplayBg
-value {
-  "Underruns"
-}
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 195
-y 72
-w 97
+w 95
 h 20
 font "helvetica-medium-r-12.0"
 fgColor index 14
@@ -237,9 +108,9 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 195
+x 197
 y 48
-w 97
+w 95
 h 20
 font "helvetica-medium-r-12.0"
 fgColor index 14
@@ -276,11 +147,11 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 195
+x 197
 y 24
-w 97
+w 95
 h 20
-font "helvetica-medium-r-12.0"
+font "helvetica-medium-r-10.0"
 fgColor index 14
 bgColor index 3
 useDisplayBg
@@ -309,18 +180,44 @@ indicatorPv "$(P)$(R)FrameRateEnable_RBV"
 font "helvetica-medium-r-12.0"
 endObjectProperties
 
-# (Group)
-object activeGroupClass
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 8
+y 48
+w 97
+h 20
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 3
+useDisplayBg
+value {
+  "Convert Pixel"
+}
+endObjectProperties
+
+# (Menu Button)
+object activeMenuButtonClass
 beginObjectProperties
 major 4
 minor 0
 release 0
-x 12
-y 24
-w 175
-h 70
-
-beginGroup
+x 104
+y 48
+w 88
+h 20
+fgColor index 25
+bgColor index 5
+inconsistentColor index 40
+topShadowColor index 1
+botShadowColor index 11
+controlPv "$(P)$(R)ConvertPixelFormat"
+indicatorPv "$(P)$(R)ConvertPixelFormat_RBV"
+font "helvetica-medium-r-12.0"
+endObjectProperties
 
 # (Static Text)
 object activeXTextClass
@@ -330,24 +227,73 @@ minor 1
 release 1
 x 8
 y 24
-w 176
-h 72
+w 97
+h 20
 font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 20
-bgColor index 0
-visMin "3"
-visMax "4"
+fgColor index 14
+bgColor index 3
+useDisplayBg
 value {
-  "NOT CONNECTED"
+  "Pixel Format"
 }
-border
 endObjectProperties
 
-endGroup
+# (Menu Button)
+object activeMenuButtonClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 104
+y 24
+w 88
+h 20
+fgColor index 25
+bgColor index 5
+inconsistentColor index 40
+topShadowColor index 1
+botShadowColor index 11
+controlPv "$(P)$(R)PixelFormat"
+indicatorPv "$(P)$(R)PixelFormat_RBV"
+font "helvetica-medium-r-12.0"
+endObjectProperties
 
-visPv "$(P)$(R)CONNECTION.SEVR"
-visMin "3"
-visMax "4"
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 8
+y 72
+w 97
+h 20
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 3
+useDisplayBg
+value {
+  "Trigger Selector"
+}
+endObjectProperties
+
+# (Menu Button)
+object activeMenuButtonClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 104
+y 72
+w 88
+h 20
+fgColor index 25
+bgColor index 5
+inconsistentColor index 40
+topShadowColor index 1
+botShadowColor index 11
+controlPv "$(P)$(R)GC_TriggerSelector"
+indicatorPv "$(P)$(R)GC_TriggerSelector_RBV"
+font "helvetica-medium-r-12.0"
 endObjectProperties
 

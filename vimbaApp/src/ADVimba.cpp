@@ -1,5 +1,5 @@
 /*
- * ADVimba.cpp
+ * ADVcase imba.cpp:
  *
  * This is a driver for AVT (Prosilica) cameras using their Vimba SDK
  *
@@ -165,6 +165,9 @@ ADVimba::ADVimba(const char *portName, const char *cameraId,
     setIntegerParam(NDDataType, NDUInt8);
     setIntegerParam(NDColorMode, NDColorModeMono);
     setIntegerParam(NDArraySizeZ, 0);
+#ifdef NDBitsPerPixelString
+    setIntegerParam(NDBitsPerPixel, 8);
+#endif
     setIntegerParam(ADMinX, 0);
     setIntegerParam(ADMinY, 0);
     setStringParam(ADStringToServer, "<not used by driver>");
@@ -192,6 +195,47 @@ ADVimba::ADVimba(const char *portName, const char *cameraId,
     epicsAtExit(c_shutdown, this);
 
     return;
+}
+
+asynStatus ADVimba::writeInt32( asynUser *pasynUser, epicsInt32 value)
+{
+    asynStatus status = asynSuccess;
+    int function = pasynUser->reason;
+
+    // Do this in the super!
+    status = ADGenICam::writeInt32(pasynUser, value);
+#ifdef NDBitsPerPixelString
+    // Here, we just catch changes to the image format.
+    if (function == GCPixelFormat) {
+	int bits = 0;
+	switch (value) {
+        case VmbPixelFormatMono8:
+	    bits = 8;
+	    break;
+	case VmbPixelFormatMono10:
+        case VmbPixelFormatMono10p:
+	    bits = 10;
+	    break;
+        case VmbPixelFormatMono12:
+        case VmbPixelFormatMono12Packed:
+        case VmbPixelFormatMono12p:
+	    bits = 12;
+	    break;
+        case VmbPixelFormatMono14:
+	    bits = 14;
+	    break;
+        case VmbPixelFormatMono16:
+	    bits = 16;
+	    break;
+	default: /* A color mode.  Let's skip for now. */
+	    bits = 8;
+	    break;
+	}
+	setIntegerParam(NDBitsPerPixel, bits);
+	callParamCallbacks();
+    }
+#endif
+    return status;
 }
 
 inline asynStatus ADVimba::checkError(VmbErrorType error, const char *functionName, const char *PGRFunction)

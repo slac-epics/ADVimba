@@ -36,7 +36,7 @@ public:
             size_t maxMemory, int priority, int stackSize);
 
     // virtual methods to override from ADGenICam
-    //virtual asynStatus writeInt32( asynUser *pasynUser, epicsInt32 value);
+    virtual asynStatus writeInt32( asynUser *pasynUser, epicsInt32 value);
     //virtual asynStatus writeFloat64( asynUser *pasynUser, epicsFloat64 value);
     virtual asynStatus readEnum(asynUser *pasynUser, char *strings[], int values[], int severities[], 
                                 size_t nElements, size_t *nIn);
