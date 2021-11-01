@@ -20,8 +20,11 @@ static int reset_usb(char *serial)
         libusb_get_device_descriptor(list[i], &desc);
 	if (libusb_open(list[i], &h))
 	    continue;
-	libusb_get_string_descriptor_ascii(h, desc.iSerialNumber, buf, sizeof(buf));
-	if (!strcmp((char*)buf, serial)) {
+	if (libusb_get_string_descriptor_ascii(h, desc.iSerialNumber, buf, sizeof(buf)) < 0)
+	    continue;
+	if (!serial) {
+	    printf("%04x:%04x --> %s\n", desc.idVendor, desc.idProduct, buf);
+	} else if (!strcmp((char*)buf, serial)) {
 	    printf("Found %s, resetting.\n", serial);
 	    libusb_reset_device(h);
 	    libusb_close(h);
