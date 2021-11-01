@@ -194,6 +194,7 @@ ADGenICam_nodes = ['AcquisitionFrameRate', 'AcquisitionFrameRateEnable',
                    'TriggerSource', 'TriggerOverlap', 'TriggerSoftware',
                    'TriggerMode', 'ExposureMode', 'ExposureAuto', 'GainAuto',
                    'PixelFormat']
+
 # for each node
 for node in doneNodes:
     nodeName = str(node.getAttribute("Name"))

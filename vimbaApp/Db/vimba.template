@@ -234,6 +234,10 @@ record(seq, "$(P)$(R)InitTrigSettings") {
     field(LNK7, "$(P)$(R)TriggerMode PP")
     field(DOL8, "0.0")
     field(LNK8, "$(P)$(R)CamTrigDelay PP")
+    field(DOL9, "450000000")
+    field(LNK9, "$(P)$(R)GC_DevLinThrLimit PP")
+    field(DOLA, "0")
+    field(LNKA, "$(P)$(R)GC_DevLinThrLimMode PP")
 }
 
 record(seq, "$(P)$(R)InitFreeRunSettings") {
@@ -254,4 +258,37 @@ record(seq, "$(P)$(R)InitFreeRunSettings") {
     field(LNK5, "$(P)$(R)AcquirePeriod PP")
     field(DOL6, "0.0")
     field(LNK6, "$(P)$(R)CamTrigDelay PP")
+    field(DOL7, "450000000")
+    field(LNK7, "$(P)$(R)GC_DevLinThrLimit PP")
+    field(DOL8, "0")
+    field(LNK8, "$(P)$(R)GC_DevLinThrLimMode PP")
+}
+
+#
+# Handle changes to PixelFormat.  We need to change two things whenever
+# this changes: ConvertPixelFormat and DataType.  We're dependent here
+# on the layout of ConvertPixelFormat and DataType as well as the values
+# in VmbCommonTypes.h.  (These records need to look at the RVAL, as the
+# VAL could change depending on how many options are supported by the
+# particular camera.
+#
+# We're only adjusting things for the Mono settings.  Color will have to
+# be manually adjusted, or we'll have to add more records later.
+#
+record(calcout, "$(P)$(R)AdjustCPF") {
+    field(INPA, "$(P)$(R)PixelFormat.RVAL CPP NMS")
+    field(CALC, "(A&0x01000000)?1:0")
+    field(OOPT, "When Non-zero")
+    field(DOPT, "Use OCAL")
+    field(OCAL, "(A==0x01080001)?0:2")  # Mono8 == No conversion, any other Mono == Mono16.
+    field(OUT,  "$(P)$(R)ConvertPixelFormat PP")
+}
+
+record(calcout, "$(P)$(R)AdjustDT") {
+    field(INPA, "$(P)$(R)PixelFormat.RVAL CPP NMS")
+    field(CALC, "(A&0x01000000)?1:0")
+    field(OOPT, "When Non-zero")
+    field(DOPT, "Use OCAL")
+    field(OCAL, "(A==0x01080001)?1:3")  # Mono8 == Uint8 any other Mono == Uint16.
+    field(OUT,  "$(P)$(R)DataType PP")
 }

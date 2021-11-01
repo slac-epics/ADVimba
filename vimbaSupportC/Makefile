@@ -10,6 +10,7 @@ INC += $(patsubst ../%, %, $(wildcard ../Common/*))
 
 # Note, the following files were manually copied from the Spinnaker distribution lib directories on Windows
 # and from /usr/lib on Linux.
+# SLAC Note: We're only using linux-x86_64 and rhel7-x86_64, and these only for USB!
 ifeq (windows-x64, $(findstring windows-x64, $(T_A)))
 LIB_INSTALLS    += ../os/windows-x64/VimbaC.lib
 LIB_INSTALLS    += ../os/windows-x64/VimbaImageTransform.lib
@@ -30,8 +31,8 @@ else ifeq ($(OS_CLASS), Linux)
   ifeq ($(ARCH_CLASS), x86_64)
   LIB_INSTALLS    += ../os/linux-x86_64/libVimbaC.so
   LIB_INSTALLS    += ../os/linux-x86_64/libVimbaImageTransform.so
-  BIN_INSTALLS    += ../os/linux-x86_64/VimbaGigETL.cti
-  BIN_INSTALLS    += ../os/linux-x86_64/VimbaGigETL.xml
+  #BIN_INSTALLS    += ../os/linux-x86_64/VimbaGigETL.cti
+  #BIN_INSTALLS    += ../os/linux-x86_64/VimbaGigETL.xml
   BIN_INSTALLS    += ../os/linux-x86_64/VimbaUSBTL.cti
   BIN_INSTALLS    += ../os/linux-x86_64/VimbaUSBTL.xml
 
@@ -46,8 +47,8 @@ else ifeq ($(OS_CLASS), Linux)
 else ifeq (rhel7-x86_64, $(findstring rhel7-x86_64, $(T_A)))
 LIB_INSTALLS    += ../os/rhel7-x86_64/libVimbaC.so
 LIB_INSTALLS    += ../os/rhel7-x86_64/libVimbaImageTransform.so
-BIN_INSTALLS    += ../os/rhel7-x86_64/VimbaGigETL.cti
-BIN_INSTALLS    += ../os/rhel7-x86_64/VimbaGigETL.xml
+#BIN_INSTALLS    += ../os/rhel7-x86_64/VimbaGigETL.cti
+#BIN_INSTALLS    += ../os/rhel7-x86_64/VimbaGigETL.xml
 BIN_INSTALLS    += ../os/rhel7-x86_64/VimbaUSBTL.cti
 BIN_INSTALLS    += ../os/rhel7-x86_64/VimbaUSBTL.xml
 
