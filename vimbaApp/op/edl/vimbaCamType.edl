@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 3133
-y 596
+x 2230
+y 567
 w 400
 h 345
 font "helvetica-bold-r-12.0"
@@ -207,8 +207,8 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 6
-y 148
+x 8
+y 100
 w 94
 h 20
 font "helvetica-medium-r-12.0"
@@ -216,62 +216,6 @@ fgColor index 14
 bgColor index 3
 value {
   "Trigger Selector"
-}
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 6
-y 100
-w 94
-h 20
-font "helvetica-medium-r-12.0"
-fgColor index 14
-bgColor index 3
-value {
-  "Line Selector"
-}
-endObjectProperties
-
-# (Menu Button)
-object activeMenuButtonClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 104
-y 100
-w 96
-h 20
-fgColor index 25
-bgColor index 5
-inconsistentColor index 40
-topShadowColor index 1
-botShadowColor index 11
-controlPv "$(P)$(R)GC_LineSelector"
-indicatorPv "$(P)$(R)GC_LineSelector_RBV"
-font "helvetica-medium-r-12.0"
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 6
-y 124
-w 94
-h 20
-font "helvetica-medium-r-12.0"
-fgColor index 14
-bgColor index 3
-value {
-  "Line Mode"
 }
 endObjectProperties
 
@@ -305,27 +249,7 @@ major 4
 minor 0
 release 0
 x 104
-y 124
-w 96
-h 20
-fgColor index 25
-bgColor index 5
-inconsistentColor index 40
-topShadowColor index 1
-botShadowColor index 11
-controlPv "$(P)$(R)GC_LineMode"
-indicatorPv "$(P)$(R)GC_LineMode_RBV"
-font "helvetica-medium-r-12.0"
-endObjectProperties
-
-# (Menu Button)
-object activeMenuButtonClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 104
-y 148
+y 100
 w 96
 h 20
 fgColor index 25
@@ -429,7 +353,7 @@ major 4
 minor 7
 release 0
 x 104
-y 218
+y 172
 w 232
 h 20
 controlPv "$(P)$(R)SerialNumber_RBV"
@@ -452,8 +376,8 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 6
-y 218
+x 8
+y 172
 w 94
 h 20
 font "helvetica-medium-r-12.0"
@@ -471,7 +395,7 @@ major 4
 minor 7
 release 0
 x 104
-y 194
+y 148
 w 232
 h 20
 controlPv "$(P)$(R)FirmwareVersion_RBV"
@@ -494,8 +418,8 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 6
-y 194
+x 8
+y 148
 w 94
 h 20
 font "helvetica-medium-r-12.0"
@@ -512,8 +436,8 @@ beginObjectProperties
 major 4
 minor 0
 release 0
-x 6
-y 242
+x 8
+y 196
 w 204
 h 24
 
@@ -526,7 +450,7 @@ major 4
 minor 4
 release 0
 x 4
-y 242
+y 194
 w 204
 h 24
 fgColor index 14
@@ -562,7 +486,7 @@ major 4
 minor 7
 release 0
 x 28
-y 246
+y 198
 w 175
 h 16
 controlPv "$(P)$(R)CamModel"
@@ -587,8 +511,8 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 6
-y 170
+x 8
+y 124
 w 94
 h 20
 font "helvetica-medium-r-12.0"
@@ -606,7 +530,7 @@ major 4
 minor 0
 release 0
 x 104
-y 170
+y 124
 w 96
 h 20
 fgColor index 25
