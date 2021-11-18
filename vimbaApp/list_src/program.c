@@ -26,14 +26,19 @@
 =============================================================================*/
 
 #include <stdio.h>
-
+#include <stdlib.h>
 #include <ListCameras.h>
+
+char genpath[] = "GENICAM_GENTL64_PATH=" BINPATH;
 
 int main( int argc, char* argv[] )
 {
     printf( "//////////////////////////////////////\n" );
     printf( "/// Vimba API List Cameras Example ///\n" );
     printf( "//////////////////////////////////////\n\n" );
+
+    if (!getenv("GENICAM_GENTL64_PATH"))
+	putenv(genpath);
 
     if ( 1 < argc )
     {

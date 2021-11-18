@@ -10,6 +10,8 @@ include $(TOP)/configure/CONFIG
 
 PROD_IOC = ListCameras
 
+USR_CFLAGS += -DBINPATH=\"$(shell pwd)/../../../bin/$(T_A)\"
+
 ListCameras_SRCS += ListCameras.c program.c PrintVimbaVersion.c DiscoverGigECameras.c
 
 PROD_SYS_LIBS_Linux += VimbaC
