@@ -150,7 +150,7 @@ record(mbbi, "$(P)$(R)GC_StreamType_RBV") {
   info(autosaveFields, "DESC ZRSV ONSV TWSV THSV FRSV FVSV SXSV SVSV EISV NISV TESV ELSV TVSV TTSV FTSV FFSV TSE")
 }
 
-# These are totally bogus and copied from the aravisGige.
+# MCB - These are totally bogus and copied from the aravisGige.
 # TBD - Fix this!!
 record( ao, "$(P)$(R)XmitRate" )
 {
