@@ -220,32 +220,40 @@ record(seq, "$(P)$(R)InitTrigSettings") {
     field(LNK1, "$(P)$(R)FrameRateEnable PP")
     field(DLY2, "2")
     field(DOL2, "1")
-    field(LNK2, "$(P)$(R)WriteTrigSelect.PROC")
-    field(DOL3, "0")
-    field(LNK3, "$(P)$(R)GC_LineSelector PP")
-    field(DLY4, "1")
+    field(LNK2, "$(P)$(R)WriteTrigSelect1.PROC")
+    field(DOL3, "1")
+    field(LNK3, "$(P)$(R)WriteTrigSelect2.PROC")
     field(DOL4, "0")
-    field(LNK4, "$(P)$(R)GC_LineMode PP")
-    field(DOL5, "1")
-    field(LNK5, "$(P)$(R)TriggerSource PP")
-    field(DOL6, "2")
-    field(LNK6, "$(P)$(R)ImageMode PP")
-    field(DOL7, "1")
-    field(LNK7, "$(P)$(R)TriggerMode PP")
-    field(DOL8, "0.0")
-    field(LNK8, "$(P)$(R)CamTrigDelay PP")
-    field(DOL9, "450000000")
-    field(LNK9, "$(P)$(R)GC_DevLinThrLimit PP")
-    field(DOLA, "0")
-    field(LNKA, "$(P)$(R)GC_DevLinThrLimMode PP")
+    field(LNK4, "$(P)$(R)GC_LineSelector PP")
+    field(DLY5, "1")
+    field(DOL5, "0")
+    field(LNK5, "$(P)$(R)GC_LineMode PP")
+    field(DOL6, "1")
+    field(LNK6, "$(P)$(R)TriggerSource PP")
+    field(DOL7, "2")
+    field(LNK7, "$(P)$(R)ImageMode PP")
+    field(DOL8, "1")
+    field(LNK8, "$(P)$(R)TriggerMode PP")
+    field(DOL9, "0.0")
+    field(LNK9, "$(P)$(R)CamTrigDelay PP")
+    field(DOLA, "450000000")
+    field(LNKA, "$(P)$(R)GC_DevLinThrLimit PP")
+    field(DOLB, "0")
+    field(LNKB, "$(P)$(R)GC_DevLinThrLimMode PP")
 }
 
 #
 # Sigh... FrameStart isn't a constant value, so let's
-# write it as an enum value.
+# write it as an enum value.  Worse, sometimes it is
+# Frame Start with a space!
 #
-record(stringout, "$(P)$(R)WriteTrigSelect") {
+record(stringout, "$(P)$(R)WriteTrigSelect1") {
     field(VAL,  "FrameStart")
+    field(OUT, "$(P)$(R)GC_TriggerSelector PP")		  
+}
+
+record(stringout, "$(P)$(R)WriteTrigSelect2") {
+    field(VAL,  "Frame Start")
     field(OUT, "$(P)$(R)GC_TriggerSelector PP")		  
 }
 

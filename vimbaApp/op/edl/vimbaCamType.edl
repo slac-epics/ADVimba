@@ -462,7 +462,7 @@ buttonLabel "             Model Specific        "
 numPvs 4
 numDsps 1
 displayFileName {
-  0 "usbScreens/camModel.edl"
+  0 "vimbaCamScreens/camModel.edl"
 }
 setPosition {
   0 "button"
