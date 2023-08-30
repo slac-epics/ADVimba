@@ -11,7 +11,7 @@ ifeq ($(STATIC_BUILD), YES)
 endif
 
 LIB_SRCS += VimbaFeature.cpp
-LIB_SRCS += ADVimba.cpp
+LIB_SRCS += ADVimba.cpp camera_ts.cpp
 
 LIB_LIBS  += VimbaCPP ADGenICam
 

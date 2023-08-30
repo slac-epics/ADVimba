@@ -564,12 +564,15 @@ asynStatus ADVimba::processFrame(FramePtr pFrame)
     updateTimeStamp(&pRaw->epicsTS);
     getIntegerParam(VMBTimeStampMode, &timeStampMode);
     // Set the timestamps in the buffer
-    if (timeStampMode == TimeStampCamera) {
+    {
+	extern double camera_ts;
         VmbUint64_t timeStamp;
         pFrame->GetTimestamp(timeStamp);
-        pRaw->timeStamp = timeStamp / 1e9;
-    } else {
-        pRaw->timeStamp = pRaw->epicsTS.secPastEpoch + pRaw->epicsTS.nsec/1e9;
+	camera_ts = pRaw->timeStamp = timeStamp / 1e9;
+	if (timeStampMode == TimeStampCamera)
+	    pRaw->timeStamp = camera_ts;
+        else
+	    pRaw->timeStamp = pRaw->epicsTS.secPastEpoch + pRaw->epicsTS.nsec/1e9;
     }
 
     // Get any attributes that have been defined for this driver        
