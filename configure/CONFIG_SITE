@@ -19,7 +19,7 @@ CHECK_RELEASE = YES
 # Set this when you only want to compile this application
 #   for a subset of the cross-compiled target architectures
 #   that Base is built for.
-#CROSS_COMPILER_TARGET_ARCHS = vxWorks-68040
+CROSS_COMPILER_TARGET_ARCHS =
 
 # To install files into a location other than $(TOP) define
 #   INSTALL_LOCATION here.
@@ -32,6 +32,13 @@ CHECK_RELEASE = YES
 #   take effect.
 #IOCS_APPL_TOP = </IOC/path/to/application/top>
 
+# =================================================================
+# Define the rhel versions with SLAC's standards (ex: rhel7-x86_64)
+# =================================================================
+ifdef T_A
+PKG_ARCH=$(T_A)
+endif
+
 # Get settings from AREA_DETECTOR, so we only have to configure once for all detectors if we want to
 -include $(AREA_DETECTOR)/configure/CONFIG_SITE
 -include $(AREA_DETECTOR)/configure/CONFIG_SITE.$(EPICS_HOST_ARCH)
@@ -43,3 +50,9 @@ endif
 
 STATIC_BUILD=NO
 SHARED_LIBRARIES=YES
+
+USB_PACKAGE_NAME=libusb
+USB_VERSION=v1.0.0
+USB_TOP=$(PACKAGE_SITE_TOP)/$(USB_PACKAGE_NAME)/$(USB_VERSION)
+USB_LIB = $(USB_TOP)/$(PKG_ARCH)/lib
+USB_INCLUDE = $(USB_TOP)/$(PKG_ARCH)/include/libusb-1.0
