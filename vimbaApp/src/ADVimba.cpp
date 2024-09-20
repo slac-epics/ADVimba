@@ -561,19 +561,20 @@ asynStatus ADVimba::processFrame(FramePtr pFrame)
         pRaw->uniqueId = uniqueId_;
     }
     uniqueId_++;
-    updateTimeStamp(&pRaw->epicsTS);
-    getIntegerParam(VMBTimeStampMode, &timeStampMode);
     // Set the timestamps in the buffer
+    getIntegerParam(VMBTimeStampMode, &timeStampMode);
     {
-	extern double camera_ts;
+        extern double camera_ts;
         VmbUint64_t timeStamp;
         pFrame->GetTimestamp(timeStamp);
-	camera_ts = pRaw->timeStamp = timeStamp / 1e9;
-	if (timeStampMode == TimeStampCamera)
-	    pRaw->timeStamp = camera_ts;
+        camera_ts = timeStamp / 1.e9;
+        pRaw->timeStamp = camera_ts;
+        if (timeStampMode == TimeStampCamera)
+          pRaw->timeStamp = camera_ts;
         else
-	    pRaw->timeStamp = pRaw->epicsTS.secPastEpoch + pRaw->epicsTS.nsec/1e9;
+          pRaw->timeStamp = pRaw->epicsTS.secPastEpoch + pRaw->epicsTS.nsec / 1.e9;
     }
+    updateTimeStamp(&pRaw->epicsTS);
 
     // Get any attributes that have been defined for this driver        
     getAttributes(pRaw->pAttributeList);
