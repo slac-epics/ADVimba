@@ -157,9 +157,10 @@ ADVimba::ADVimba(const char *portName, const char *cameraId,
         return;
     }
 
-    createParam("VMB_CONVERT_PIXEL_FORMAT",     asynParamInt32,   &VMBConvertPixelFormat);
-    createParam("VMB_TIME_STAMP_MODE",          asynParamInt32,   &VMBTimeStampMode);
-    createParam("VMB_UNIQUE_ID_MODE",           asynParamInt32,   &VMBUniqueIdMode);
+    createParam(VMBConvertPixelFormatString,     asynParamInt32,   &VMBConvertPixelFormat);
+    createParam(VMBTimeStampModeString,          asynParamInt32,   &VMBTimeStampMode);
+    createParam(VMBUniqueIdModeString,           asynParamInt32,   &VMBUniqueIdMode);
+    createParam(VMBPackedPixelFormatString,      asynParamInt32,   &VMBPackedPixelFormat);
 
     /* Set initial values of some parameters */
     setIntegerParam(NDDataType, NDUInt8);
@@ -204,37 +205,51 @@ asynStatus ADVimba::writeInt32( asynUser *pasynUser, epicsInt32 value)
 
     // Do this in the super!
     status = ADGenICam::writeInt32(pasynUser, value);
-#ifdef NDBitsPerPixelString
     // Here, we just catch changes to the image format.
     if (function == GCPixelFormat) {
-	int bits = 0;
-	switch (value) {
+      int bits = 0;
+      int packed = 0;
+      switch (value) {
         case VmbPixelFormatMono8:
-	    bits = 8;
-	    break;
-	case VmbPixelFormatMono10:
+          bits = 8;
+          packed = 0;
+          break;
+        case VmbPixelFormatMono10:
+          bits = 10;
+          packed = 0;
+          break;
         case VmbPixelFormatMono10p:
-	    bits = 10;
-	    break;
+          bits = 10;
+          packed = 1;
+          break;
         case VmbPixelFormatMono12:
+          bits = 12;
+          packed = 0;
+          break;
         case VmbPixelFormatMono12Packed:
         case VmbPixelFormatMono12p:
-	    bits = 12;
-	    break;
+          bits = 12;
+          packed = 1;
+          break;
         case VmbPixelFormatMono14:
-	    bits = 14;
-	    break;
+          bits = 14;
+          packed = 0;
+          break;
         case VmbPixelFormatMono16:
-	    bits = 16;
-	    break;
-	default: /* A color mode.  Let's skip for now. */
-	    bits = 8;
-	    break;
-	}
-	setIntegerParam(NDBitsPerPixel, bits);
-	callParamCallbacks();
-    }
+          bits = 16;
+          packed = 0;
+          break;
+        default: /* A color mode.  Let's skip for now. */
+          bits = 8;
+          packed = 0;
+          break;
+      }
+#ifdef NDBitsPerPixelString
+      setIntegerParam(NDBitsPerPixel, bits);
 #endif
+      setIntegerParam(VMBPackedPixelFormat, packed);
+      callParamCallbacks();
+    }
     return status;
 }
 

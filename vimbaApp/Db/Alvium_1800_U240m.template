@@ -43,7 +43,6 @@ record(mbbo, "$(P)$(R)GC_DeviceScanType") {
   field(ZRST, "Areascan")
   field(ZRVL, "0")
   field(DISA, "0")
-  field(PINI, "YES")
   info( autosaveFields, "DESC ZRSV ONSV TWSV THSV FRSV FVSV SXSV SVSV EISV NISV TESV ELSV TVSV TTSV FTSV FFSV TSE PINI VAL" )
 }
 
@@ -181,7 +180,6 @@ record(int64out, "$(P)$(R)GC_DevSFNCVerMajor") {
   field(DTYP, "asynInt64")
   field(OUT,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))GC_I_DeviceSFNCVersionMajor")
   field(DISA, "0")
-  field(PINI, "YES")
   info( autosaveFields, "DESC LOLO LOW HIGH HIHI LLSV LSV HSV HHSV EGU TSE PINI VAL" )
 }
 
@@ -197,7 +195,6 @@ record(int64out, "$(P)$(R)GC_DevSFNCVerMinor") {
   field(DTYP, "asynInt64")
   field(OUT,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))GC_I_DeviceSFNCVersionMinor")
   field(DISA, "0")
-  field(PINI, "YES")
   info( autosaveFields, "DESC LOLO LOW HIGH HIHI LLSV LSV HSV HHSV EGU TSE PINI VAL" )
 }
 
@@ -213,7 +210,6 @@ record(int64out, "$(P)$(R)GC_DevSFNCVerSubMin") {
   field(DTYP, "asynInt64")
   field(OUT,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))GC_I_DeviceSFNCVersionSubMinor")
   field(DISA, "0")
-  field(PINI, "YES")
   info( autosaveFields, "DESC LOLO LOW HIGH HIHI LLSV LSV HSV HHSV EGU TSE PINI VAL" )
 }
 
@@ -389,7 +385,6 @@ record(ao, "$(P)$(R)GC_DeviceTemperature") {
   field(OUT,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))GC_D_DeviceTemperature")
   field(PREC, "3")
   field(DISA, "0")
-  field(PINI, "YES")
   info( autosaveFields, "DESC LOLO LOW HIGH HIHI LLSV LSV HSV HHSV EGU TSE PREC PINI VAL" )
 }
 
@@ -413,7 +408,6 @@ record(int64out, "$(P)$(R)GC_DevFirUploadType") {
   field(DTYP, "asynInt64")
   field(OUT,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))GC_I_DeviceFirmwareUploadType")
   field(DISA, "0")
-  field(PINI, "YES")
   info( autosaveFields, "DESC LOLO LOW HIGH HIHI LLSV LSV HSV HHSV EGU TSE PINI VAL" )
 }
 
@@ -1497,7 +1491,6 @@ record(mbbo, "$(P)$(R)GC_AcqFrameRateMode") {
   field(TWST, "ForceFrameRate")
   field(TWVL, "2")
   field(DISA, "0")
-  field(PINI, "YES")
   info( autosaveFields, "DESC ZRSV ONSV TWSV THSV FRSV FVSV SXSV SVSV EISV NISV TESV ELSV TVSV TTSV FTSV FFSV TSE PINI VAL" )
 }
 
@@ -2639,7 +2632,6 @@ record(mbbo, "$(P)$(R)GC_FileProcessStatus") {
   field(ONST, "UpdateNotRequire")
   field(ONVL, "1")
   field(DISA, "0")
-  field(PINI, "YES")
   info( autosaveFields, "DESC ZRSV ONSV TWSV THSV FRSV FVSV SXSV SVSV EISV NISV TESV ELSV TVSV TTSV FTSV FFSV TSE PINI VAL" )
 }
 
@@ -2680,7 +2672,6 @@ record(mbbo, "$(P)$(R)GC_FileStatus") {
   field(ONST, "Open")
   field(ONVL, "1")
   field(DISA, "0")
-  field(PINI, "YES")
   info( autosaveFields, "DESC ZRSV ONSV TWSV THSV FRSV FVSV SXSV SVSV EISV NISV TESV ELSV TVSV TTSV FTSV FFSV TSE PINI VAL" )
 }
 
@@ -2730,7 +2721,6 @@ record(mbbo, "$(P)$(R)GC_CorrectionMode") {
   field(ONST, "Off")
   field(ONVL, "0")
   field(DISA, "0")
-  field(PINI, "YES")
   info( autosaveFields, "DESC ZRSV ONSV TWSV THSV FRSV FVSV SXSV SVSV EISV NISV TESV ELSV TVSV TTSV FTSV FFSV TSE PINI VAL" )
 }
 
@@ -2796,7 +2786,6 @@ record(int64out, "$(P)$(R)GC_CorDataSize") {
   field(DTYP, "asynInt64")
   field(OUT,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))GC_I_CorrectionDataSize")
   field(DISA, "0")
-  field(PINI, "YES")
   info( autosaveFields, "DESC LOLO LOW HIGH HIHI LLSV LSV HSV HHSV EGU TSE PINI VAL" )
 }
 
@@ -2812,7 +2801,6 @@ record(int64out, "$(P)$(R)GC_CorEntryType") {
   field(DTYP, "asynInt64")
   field(OUT,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))GC_I_CorrectionEntryType")
   field(DISA, "0")
-  field(PINI, "YES")
   info( autosaveFields, "DESC LOLO LOW HIGH HIHI LLSV LSV HSV HHSV EGU TSE PINI VAL" )
 }
 

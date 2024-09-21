@@ -403,7 +403,6 @@ record(ao, "$(P)$(R)GC_DevSFNCVerMajor") {
   field(DTYP, "asynInt64")
   field(OUT,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))GC_I_DeviceSFNCVersionMajor")
   field(DISA, "0")
-  field(PINI, "YES")
   info( autosaveFields, "DESC LOLO LOW HIGH HIHI LLSV LSV HSV HHSV EGU TSE PINI VAL" )
 }
 
@@ -419,7 +418,6 @@ record(ao, "$(P)$(R)GC_DevSFNCVerMinor") {
   field(DTYP, "asynInt64")
   field(OUT,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))GC_I_DeviceSFNCVersionMinor")
   field(DISA, "0")
-  field(PINI, "YES")
   info( autosaveFields, "DESC LOLO LOW HIGH HIHI LLSV LSV HSV HHSV EGU TSE PINI VAL" )
 }
 
@@ -428,7 +426,6 @@ record(ai, "$(P)$(R)GC_DevSFNCVerSubMin_RBV") {
   field(INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))GC_I_DeviceSFNCVersionSubMinor")
   field(SCAN, "I/O Intr")
   field(DISA, "0")
-  field(PINI, "YES")
   info( autosaveFields, "DESC LOLO LOW HIGH HIHI LLSV LSV HSV HHSV EGU TSE" )
 }
 
@@ -436,7 +433,6 @@ record(ao, "$(P)$(R)GC_DevSFNCVerSubMin") {
   field(DTYP, "asynInt64")
   field(OUT,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))GC_I_DeviceSFNCVersionSubMinor")
   field(DISA, "0")
-  field(PINI, "YES")
   info( autosaveFields, "DESC LOLO LOW HIGH HIHI LLSV LSV HSV HHSV EGU TSE PINI VAL" )
 }
 
