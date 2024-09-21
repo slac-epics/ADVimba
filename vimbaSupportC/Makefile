@@ -37,14 +37,13 @@ LIB_INSTALLS    += ../os/linux-x86/libVimbaImageTransform.so
 BIN_INSTALLS    += ../os/linux-x86/VimbaGigETL.cti
 BIN_INSTALLS    += ../os/linux-x86/VimbaGigETL.xml
 
-else ifeq (rhel7-x86_64, $(findstring rhel7-x86_64, $(T_A)))
-LIB_INSTALLS    += ../os/rhel7-x86_64/libVimbaC.so
-LIB_INSTALLS    += ../os/rhel7-x86_64/libVimbaImageTransform.so
-BIN_INSTALLS    += ../os/rhel7-x86_64/VimbaGigETL.cti
-BIN_INSTALLS    += ../os/rhel7-x86_64/VimbaGigETL.xml
-BIN_INSTALLS    += ../os/rhel7-x86_64/VimbaUSBTL.cti
-BIN_INSTALLS    += ../os/rhel7-x86_64/VimbaUSBTL.xml
-
+else ifneq (, $(findstring rhel, $(T_A)))
+LIB_INSTALLS    += ../os/linux-x86_64/libVimbaC.so
+LIB_INSTALLS    += ../os/linux-x86_64/libVimbaImageTransform.so
+BIN_INSTALLS    += ../os/linux-x86_64/VimbaGigETL.cti
+BIN_INSTALLS    += ../os/linux-x86_64/VimbaGigETL.xml
+BIN_INSTALLS    += ../os/linux-x86_64/VimbaUSBTL.cti
+BIN_INSTALLS    += ../os/linux-x86_64/VimbaUSBTL.xml
 endif
 
 #=============================
