@@ -12,7 +12,3 @@ $(P)$(R)PixelFormat
 $(P)$(R)TimeStampMode
 $(P)$(R)UniqueIdMode
 $(P)$(R)ConvertPixelFormat
-# SLAC settings:
-$(P)$(R)XmitRate
-$(P)$(R)CamProcDelay
-$(P)$(R)DriverProcDelay

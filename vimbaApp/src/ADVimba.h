@@ -16,6 +16,7 @@ using namespace std;
 #define VMBConvertPixelFormatString  "VMB_CONVERT_PIXEL_FORMAT"   // asynParamInt32, R/W
 #define VMBTimeStampModeString       "VMB_TIME_STAMP_MODE"        // asynParamInt32, R/O
 #define VMBUniqueIdModeString        "VMB_UNIQUE_ID_MODE"         // asynParamInt32, R/O
+#define VMBPackedPixelFormatString   "VMB_PACKED_PIXEL_FORMAT"    // asynParamInt32, R/O
 
 class ADVimbaFrameObserver : virtual public IFrameObserver {
 public:
@@ -54,9 +55,11 @@ public:
 private:
     inline asynStatus checkError(VmbErrorType error, const char *functionName, const char *message);
     int VMBConvertPixelFormat;
-#define FIRST_VMB_PARAM VMBConvertPixelFormat;
     int VMBTimeStampMode;
     int VMBUniqueIdMode;
+    int VMBPackedPixelFormat;
+#define FIRST_VMB_PARAM VMBConvertPixelFormat
+#define LAST_VMB_PARAM VMBPackedPixelFormat
 
     /* Local methods to this class */
     asynStatus startCapture();
