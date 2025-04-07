@@ -38,7 +38,7 @@ int main( int argc, char* argv[] )
     printf( "//////////////////////////////////////\n\n" );
 
     if (!getenv("GENICAM_GENTL64_PATH"))
-	putenv(genpath);
+        putenv(genpath);
 
     if ( 1 < argc )
     {
