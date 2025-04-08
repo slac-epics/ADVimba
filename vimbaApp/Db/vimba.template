@@ -255,10 +255,10 @@ record(seq, "$(P)$(R)InitTrigSettings") {
     field(LNK8, "$(P)$(R)TriggerMode PP")
     field(DOL9, "0.0")
     field(LNK9, "$(P)$(R)CamTrigDelay PP")
-    field(DOLA, "450000000")
-    field(LNKA, "$(P)$(R)GC_DevLinThrLimit PP")
-    field(DOLB, "0")
-    field(LNKB, "$(P)$(R)GC_DevLinThrLimMode PP")
+    field(DOLA, "1")
+    field(LNKA, "$(P)$(R)GC_DevLinThrLimit.PROC PP")
+    field(DOLB, "1")
+    field(LNKB, "$(P)$(R)GC_DevLinThrLimMode.PROC PP")
 }
 
 #
@@ -294,10 +294,25 @@ record(seq, "$(P)$(R)InitFreeRunSettings") {
     field(LNK5, "$(P)$(R)AcquirePeriod PP")
     field(DOL6, "0.0")
     field(LNK6, "$(P)$(R)CamTrigDelay PP")
-    field(DOL7, "450000000")
-    field(LNK7, "$(P)$(R)GC_DevLinThrLimit PP")
-    field(DOL8, "0")
-    field(LNK8, "$(P)$(R)GC_DevLinThrLimMode PP")
+    field(DOL7, "1")
+    field(LNK7, "$(P)$(R)GC_DevLinThrLimit.PROC PP")
+    field(DOL8, "1")
+    field(LNK8, "$(P)$(R)GC_DevLinThrLimMode.PROC PP")
+}
+
+#
+# During inital IOC startup the autosave restored values from the
+# GC_DevLinThrLim* PVs often don't take. This is helper sequence
+# that can be triggered later in IOC boot process when the values
+# will actually take...
+#
+record(seq, "$(P)$(R)InitDeviceLinkSettings") {
+    field(SELM, "All")
+    field(DOL0, "1")
+    field(LNK0, "$(P)$(R)GC_DevLinThrLimit.PROC PP")
+    field(DLY1, "1")
+    field(DOL1, "1")
+    field(LNK1, "$(P)$(R)GC_DevLinThrLimMode.PROC PP")
 }
 
 #
