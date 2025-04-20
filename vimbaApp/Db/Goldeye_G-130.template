@@ -1577,23 +1577,9 @@ record(ao, "$(P)$(R)GC_ExposureTimeAbs") {
   info( autosaveFields, "DESC LOLO LOW HIGH HIHI LLSV LSV HSV HHSV EGU TSE PREC VAL" )
 }
 
-record(ai, "$(P)$(R)GC_ExposureTime_RBV") {
-  field(DTYP, "asynFloat64")
-  field(INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))GC_D_ExposureTime")
-  field(PREC, "3")
-  field(SCAN, "I/O Intr")
-  field(DISA, "0")
-  info( autosaveFields, "DESC LOLO LOW HIGH HIHI LLSV LSV HSV HHSV EGU TSE PREC" )
-}
+alias("$(P)$(R)AcquireTime_RBV", "$(P)$(R)GC_ExposureTime_RBV")
 
-record(ao, "$(P)$(R)GC_ExposureTime") {
-  field(DTYP, "asynFloat64")
-  field(OUT,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))GC_D_ExposureTime")
-  field(PREC, "3")
-  field(DISA, "0")
-  field(PINI, "YES")
-  info( autosaveFields, "DESC LOLO LOW HIGH HIHI LLSV LSV HSV HHSV EGU TSE PREC VAL" )
-}
+alias("$(P)$(R)AcquireTime", "$(P)$(R)GC_ExposureTime")
 
 record(mbbi, "$(P)$(R)GC_IntegrationMode_RBV") {
   field(DTYP, "asynInt32")
@@ -1946,23 +1932,9 @@ record(mbbo, "$(P)$(R)GC_AutModRegDimOut") {
   info( autosaveFields, "DESC ZRSV ONSV TWSV THSV FRSV FVSV SXSV SVSV EISV NISV TESV ELSV TVSV TTSV FTSV FFSV TSE VAL" )
 }
 
-record(ai, "$(P)$(R)GC_Gain_RBV") {
-  field(DTYP, "asynFloat64")
-  field(INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))GC_D_Gain")
-  field(PREC, "3")
-  field(SCAN, "I/O Intr")
-  field(DISA, "0")
-  info( autosaveFields, "DESC LOLO LOW HIGH HIHI LLSV LSV HSV HHSV EGU TSE PREC" )
-}
+alias("$(P)$(R)Gain_RBV", "$(P)$(R)GC_Gain_RBV")
 
-record(ao, "$(P)$(R)GC_Gain") {
-  field(DTYP, "asynFloat64")
-  field(OUT,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))GC_D_Gain")
-  field(PREC, "3")
-  field(DISA, "0")
-  field(PINI, "YES")
-  info( autosaveFields, "DESC LOLO LOW HIGH HIHI LLSV LSV HSV HHSV EGU TSE PREC VAL" )
-}
+alias("$(P)$(R)Gain", "$(P)$(R)GC_Gain")
 
 record(mbbi, "$(P)$(R)GC_GainSelector_RBV") {
   field(DTYP, "asynInt32")
