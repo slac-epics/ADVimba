@@ -17,3 +17,4 @@ O.*/
 *.swp
 /RELEASE_SITE
 autosave/
+build.log
