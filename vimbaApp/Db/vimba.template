@@ -301,21 +301,6 @@ record(seq, "$(P)$(R)InitFreeRunSettings") {
 }
 
 #
-# During inital IOC startup the autosave restored values from the
-# GC_DevLinThrLim* PVs often don't take. This is helper sequence
-# that can be triggered later in IOC boot process when the values
-# will actually take...
-#
-record(seq, "$(P)$(R)InitDeviceLinkSettings") {
-    field(SELM, "All")
-    field(DOL0, "1")
-    field(LNK0, "$(P)$(R)GC_DevLinThrLimit.PROC PP")
-    field(DLY1, "1")
-    field(DOL1, "1")
-    field(LNK1, "$(P)$(R)GC_DevLinThrLimMode.PROC PP")
-}
-
-#
 # Handle changes to PixelFormat.  We need to change two things whenever
 # this changes: ConvertPixelFormat and DataType.  We're dependent here
 # on the layout of ConvertPixelFormat and DataType as well as the values
