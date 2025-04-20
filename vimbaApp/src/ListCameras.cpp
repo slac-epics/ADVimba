@@ -60,7 +60,7 @@ void PrintCameraInfo( const CameraPtr &camera )
         ErrorStream << "[Could not get camera ID. Error code: " << err << "("<<AVT::VmbAPI::Examples::ErrorCodeToMessage(err)<<")"<< "]";
         strID =  ErrorStream.str();
     }
-                
+
     err = camera->GetName( strName );
     if( VmbErrorSuccess != err )
     {
