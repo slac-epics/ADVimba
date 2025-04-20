@@ -195,9 +195,6 @@ ADVimba::ADVimba(const char *portName, const char *cameraId,
 #ifdef NDBitsPerPixelString
     setIntegerParam(NDBitsPerPixel, 8);
 #endif
-    setIntegerParam(ADMinX, 0);
-    setIntegerParam(ADMinY, 0);
-    setStringParam(ADStringToServer, "<not used by driver>");
     setStringParam(ADStringFromServer, "<not used by driver>");
 
     startEventId_ = epicsEventCreate(epicsEventEmpty);
@@ -310,7 +307,8 @@ void ADVimba::shutdown(void)
     
     lock();
     exiting_ = true;
-    disconnectCamera();
+    stopCapture();
+    pCamera_->Close();
     system_.Shutdown();
     unlock();
 }
@@ -336,6 +334,10 @@ asynStatus ADVimba::connectCamera(void)
         pasynManager->exceptionDisconnect(pasynUserSelf);
         return asynError;
     }
+
+    // Make sure the camera has not been left in capturing state (like if the IOC crashed)
+    pCamera_->StopContinuousImageAcquisition();
+
     pasynManager->exceptionConnect(pasynUserSelf);
     asynPrint(pasynUserSelf, ASYN_TRACE_ERROR, "%s::%s OpenCameraByID succeeded\n", driverName, functionName);
     return this->adjustPacketSize();
@@ -359,7 +361,7 @@ asynStatus ADVimba::disconnectCamera(void)
     
 asynStatus ADVimba::adjustPacketSize()
 {
-    // Set the GeV packet size to the highest value that works
+    // Set the GeV packet size to the highest value that work
     FeaturePtr pFeature;
     bool done;
     VmbInterfaceType interfaceType;

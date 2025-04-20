@@ -3,6 +3,7 @@
 // October 26, 2018
 
 #include <VimbaFeature.h>
+#include <VimbaError.h>
 
 #include "VimbaCPP/Include/VimbaCPP.h"
 
@@ -72,8 +73,8 @@ inline VmbErrorType VimbaFeature::checkError(VmbErrorType error, const char *fun
 {
     if (VmbErrorSuccess != error) {
         asynPrint(mAsynUser, ASYN_TRACE_ERROR,
-            "%s:%s: ERROR calling %s error=%d, name=%s\n",
-            driverName, functionName, VMBFunction, error, mFeatureName.c_str());
+            "%s:%s: ERROR calling %s error=%s, name=%s\n",
+            driverName, functionName, VMBFunction, VimbaErrorCodes::name(error).c_str(), mFeatureName.c_str());
         return asynError;
     }
     return error;
@@ -141,7 +142,7 @@ epicsInt64 VimbaFeature::readIncrement() {
     return inc;
 }
 
-void VimbaFeature::writeInteger(epicsInt64 value) { 
+void VimbaFeature::writeInteger(epicsInt64 value) {
     if (!mIsImplemented) return;
     checkError(mFeaturePtr->SetValue(value), "writeInteger", "SetValue");
 }
