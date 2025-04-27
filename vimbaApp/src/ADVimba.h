@@ -34,7 +34,8 @@ class ADVimba : public ADGenICam
 {
 public:
     ADVimba(const char *portName, const char *cameraId,
-            size_t maxMemory, int priority, int stackSize);
+            size_t maxMemory, int priority, int stackSize,
+            int bufferCount);
 
     // virtual methods to override from ADGenICam
     virtual asynStatus writeInt32( asynUser *pasynUser, epicsInt32 value);
@@ -76,6 +77,7 @@ private:
     epicsEventId startEventId_;
     epicsEventId newFrameEventId_;
     int uniqueId_;
+    int bufferCount_;
     
     std::vector<string> TLStatisticsFeatureNames_;
 
