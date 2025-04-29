@@ -43,9 +43,6 @@ using namespace std;
 
 static const char *driverName = "ADVimba";
 
-// Size of message queue for callback function
-#define CALLBACK_MESSAGE_QUEUE_SIZE 10
-
 #define NUM_VIMBA_BUFFERS 10
 
 typedef enum {
@@ -92,11 +89,13 @@ void ADVimbaFrameObserver::FrameReceived(const FramePtr pFrame) {
  *            and maxBuffers is, say 14. maxMemory = 1024x768x14 = 11010048 bytes (~11MB). 0=unlimited.
  * \param[in] priority The EPICS thread priority for this driver.  0=use asyn default.
  * \param[in] stackSize The size of the stack for the EPICS port thread. 0=use asyn default.
+ * \param[in] the count of buffers to use for camera frame acquisition.
  */
 extern "C" int ADVimbaConfig(const char *portName, const char *cameraId, 
-                             size_t maxMemory, int priority, int stackSize)
+                             size_t maxMemory, int priority, int stackSize,
+                             int bufferCount)
 {
-    new ADVimba(portName, cameraId, maxMemory, priority, stackSize);
+    new ADVimba(portName, cameraId, maxMemory, priority, stackSize, bufferCount);
     return asynSuccess;
 }
 
@@ -122,15 +121,18 @@ static void imageGrabTaskC(void *drvPvt)
  *            and maxBuffers is, say 14. maxMemory = 1024x768x14 = 11010048 bytes (~11MB). 0=unlimited.
  * \param[in] priority The EPICS thread priority for this driver.  0=use asyn default.
  * \param[in] stackSize The size of the stack for the EPICS port thread. 0=use asyn default.
+ * \param[in] the count of buffers to use for camera frame acquisition.
  */
 ADVimba::ADVimba(const char *portName, const char *cameraId,
-                         size_t maxMemory, int priority, int stackSize )
+                         size_t maxMemory, int priority, int stackSize,
+                         int bufferCount)
     : ADGenICam(portName, maxMemory, priority, stackSize),
     cameraId_(cameraId),
     system_(VimbaSystem::GetInstance()), 
     exiting_(false),
     acquiring_(false),
-    uniqueId_(0)
+    uniqueId_(0),
+    bufferCount_(bufferCount > 0 ? bufferCount : NUM_VIMBA_BUFFERS)
 {
     static const char *functionName = "ADVimba";
     asynStatus status;
@@ -650,7 +652,7 @@ asynStatus ADVimba::startCapture()
     // Start the camera transmission...
     setIntegerParam(ADNumImagesCounter, 0);
     setShutter(1);
-    pCamera_->StartContinuousImageAcquisition(NUM_VIMBA_BUFFERS, IFrameObserverPtr(new ADVimbaFrameObserver(pCamera_, this)));
+    pCamera_->StartContinuousImageAcquisition(bufferCount_, IFrameObserverPtr(new ADVimbaFrameObserver(pCamera_, this)));
     acquiring_ = true;
     epicsEventSignal(startEventId_);
     return asynSuccess;
@@ -723,16 +725,18 @@ static const iocshArg configArg1 = {"cameraId", iocshArgString};
 static const iocshArg configArg2 = {"maxMemory", iocshArgInt};
 static const iocshArg configArg3 = {"priority", iocshArgInt};
 static const iocshArg configArg4 = {"stackSize", iocshArgInt};
+static const iocshArg configArg5 = {"bufferCount", iocshArgInt};
 static const iocshArg * const configArgs[] = {&configArg0,
                                               &configArg1,
                                               &configArg2,
                                               &configArg3,
-                                              &configArg4};
-static const iocshFuncDef configADVimba = {"ADVimbaConfig", 5, configArgs};
+                                              &configArg4,
+                                              &configArg5};
+static const iocshFuncDef configADVimba = {"ADVimbaConfig", 6, configArgs};
 static void configCallFunc(const iocshArgBuf *args)
 {
     ADVimbaConfig(args[0].sval, args[1].sval, args[2].ival, 
-                  args[3].ival, args[4].ival);
+                  args[3].ival, args[4].ival, args[5].ival);
 }
 
 
