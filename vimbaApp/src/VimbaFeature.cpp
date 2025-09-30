@@ -75,7 +75,6 @@ inline VmbErrorType VimbaFeature::checkError(VmbErrorType error, const char *fun
         asynPrint(mAsynUser, ASYN_TRACE_ERROR,
             "%s:%s: ERROR calling %s error=%s, name=%s\n",
             driverName, functionName, VMBFunction, VimbaErrorCodes::name(error).c_str(), mFeatureName.c_str());
-        return asynError;
     }
     return error;
 }

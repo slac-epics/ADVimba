@@ -44,13 +44,14 @@ else ifeq ($(OS_CLASS), Linux)
   BIN_INSTALLS    += ../os/linux-x86/VimbaUSBTL.cti
   BIN_INSTALLS    += ../os/linux-x86/VimbaUSBTL.xml
 
-else ifneq (, $(findstring rhel, $(T_A)))
-LIB_INSTALLS    += ../os/linux-x86_64/libVimbaC.so
-LIB_INSTALLS    += ../os/linux-x86_64/libVimbaImageTransform.so
-BIN_INSTALLS    += ../os/linux-x86_64/VimbaGigETL.cti
-BIN_INSTALLS    += ../os/linux-x86_64/VimbaGigETL.xml
-BIN_INSTALLS    += ../os/linux-x86_64/VimbaUSBTL.cti
-BIN_INSTALLS    += ../os/linux-x86_64/VimbaUSBTL.xml
+  else ifneq (, $(findstring rhel, $(T_A)))
+  LIB_INSTALLS    += ../os/linux-x86_64/libVimbaC.so
+  LIB_INSTALLS    += ../os/linux-x86_64/libVimbaImageTransform.so
+  BIN_INSTALLS    += ../os/linux-x86_64/VimbaGigETL.cti
+  BIN_INSTALLS    += ../os/linux-x86_64/VimbaGigETL.xml
+  BIN_INSTALLS    += ../os/linux-x86_64/VimbaUSBTL.cti
+  BIN_INSTALLS    += ../os/linux-x86_64/VimbaUSBTL.xml
+  endif
 endif
 
 #=============================
