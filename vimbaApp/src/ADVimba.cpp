@@ -24,11 +24,10 @@
 #include <epicsString.h>
 #include <epicsExit.h>
 
-#include "VimbaCPP/Include/VimbaCPP.h"
-#include "VimbaImageTransform/Include/VmbTransform.h"
+#include "VmbCPP/VmbCPP.h"
+#include "VmbImageTransform/VmbTransform.h"
 
-using namespace AVT;
-using namespace AVT::VmbAPI;
+using namespace VmbCPP;
 using namespace std;
 
 #include <ADGenICam.h>
@@ -128,7 +127,7 @@ ADVimba::ADVimba(const char *portName, const char *cameraId,
                          int bufferCount)
     : ADGenICam(portName, maxMemory, priority, stackSize),
     cameraId_(cameraId),
-    system_(VimbaSystem::GetInstance()), 
+    system_(VmbSystem::GetInstance()),
     exiting_(false),
     acquiring_(false),
     uniqueId_(0),
@@ -143,8 +142,8 @@ ADVimba::ADVimba(const char *portName, const char *cameraId,
                   DRIVER_VERSION, DRIVER_REVISION, DRIVER_MODIFICATION);
     setStringParam(NDDriverVersion,tempString);
     
-    checkError(system_.Startup(), functionName, "VimbaSystem::Startup");
-    checkError(system_.QueryVersion(version), functionName, "VimbaSystem::QueryVersion");
+    checkError(system_.Startup(), functionName, "VmbSystem::Startup");
+    checkError(system_.QueryVersion(version), functionName, "VmbSystem::QueryVersion");
     epicsSnprintf(tempString, sizeof(tempString), "%d.%d.%d", 
                   version.major, version.minor, version.patch);
     setStringParam(ADSDKVersion,tempString);
@@ -286,7 +285,55 @@ asynStatus ADVimba::connectCamera(void)
 {
     static const char *functionName = "connectCamera";
 
-    if (checkError(system_.OpenCameraByID(cameraId_, VmbAccessModeFull, pCamera_), functionName, 
+    std::string serialNum;
+    std::string camID;
+    CameraPtrVector cameras;
+
+    // query the available list of cameras
+    if (checkError(system_.GetCameras(cameras), functionName, "VimbaSystem::GetCameras")) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+            "%s::%s error querying camera info %s\n", driverName, functionName, cameraId_);
+        return asynError;
+    }
+
+    // cameraId_ can be either a serial number or index - try serial number lookup first
+    for(CameraPtrVector::iterator iter = cameras.begin(); cameras.end() != iter; ++iter) {
+        if (checkError((*iter)->GetSerialNumber(serialNum), functionName, "VimbaCamera::GetSerialNumber")) {
+            continue;
+        }
+        if (cameraId_ == serialNum) {
+            if (!checkError((*iter)->GetID(camID), functionName, "VimbaCamera::GetID")) {
+                asynPrint(pasynUserSelf, ASYN_TRACE_FLOW,
+                    "%s::%s found camera with serial number %s and id %s\n",
+                    driverName, functionName, cameraId_, camID.c_str());
+                break;
+            }
+        }
+    }
+
+    // if could not find a camera try using index instead
+    if (camID.empty()) {
+        char* endPtr = NULL;
+        unsigned camIndex = strtoul(cameraId_, &endPtr, 0);
+        if (endPtr) {
+            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s::%s error parsing camera id %s as an index\n", driverName, functionName, cameraId_);
+            return asynError;
+        }
+
+        if (camIndex < cameras.size()) {
+            if (checkError(cameras[camIndex]->GetID(camID), functionName, "VimbaCamera::GetID")) {
+                asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s::%s error querying id of camera at index %u\n", driverName, functionName, camIndex);
+            }
+        } else {
+            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s::%s error camera index %u out of range\n", driverName, functionName, camIndex);
+            return asynError;
+        }
+    }
+
+    if (checkError(system_.OpenCameraByID(camID, VmbAccessModeFull, pCamera_), functionName,
                    "VimbaSystem::OpenCameraByID")) {
         asynPrint(pasynUserSelf, ASYN_TRACE_ERROR, 
             "%s::%s error opening camera %s\n", driverName, functionName, cameraId_);
@@ -299,9 +346,9 @@ asynStatus ADVimba::connectCamera(void)
     // Set the GeV packet size to the highest value that work
     FeaturePtr pFeature;
     bool done;
-    VmbInterfaceType interfaceType;
+    VmbTransportLayerType interfaceType;
     pCamera_->GetInterfaceType(interfaceType);
-    if (interfaceType != VmbInterfaceEthernet) goto finished;
+    if (interfaceType != VmbTransportLayerTypeEthernet) goto finished;
     if (pCamera_->GetFeatureByName("GVSPAdjustPacketSize", pFeature) != VmbErrorSuccess) goto finished;
     if (pFeature->RunCommand() != VmbErrorSuccess) goto finished;
     do {
@@ -697,7 +744,7 @@ void ADVimba::report(FILE *fp, int details)
     fprintf(fp, "\nNumber of cameras detected: %d\n", numCameras);
     if (details > 1) {
         CameraPtr pCamera;
-        VmbInterfaceType interfaceType;
+        VmbTransportLayerType interfaceType;
         for (i=0; i<numCameras; i++) {
             pCamera = cameras[i];
             fprintf(fp, "Camera %d\n", i);

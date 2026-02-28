@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "VimbaC/Include/VmbCommonTypes.h"
+#include "VmbC/VmbCommonTypes.h"
 
 class VimbaErrorCodes
 {

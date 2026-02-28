@@ -28,12 +28,55 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #include <ListCameras.h>
 
-#include <VimbaC/Include/VimbaC.h>
+#include <VmbC/VmbC.h>
 #include "PrintVimbaVersion.h"
-#include "DiscoverGigECameras.h"
+
+void printAccessModes(VmbAccessMode_t accessMode)
+{
+    bool printSeparator = false;
+    if (accessMode == VmbAccessModeNone)
+    {
+        printf("No access\n");
+        return;
+    }
+    if (accessMode & VmbAccessModeFull)
+    {
+        printf("Full access");
+        printSeparator = true;
+    }
+    if (accessMode & VmbAccessModeRead)
+    {
+        if (printSeparator == true)
+        {
+            printf(", ");
+        }
+        printf("Read access");
+        printSeparator = true;
+    }
+    if (accessMode & VmbAccessModeUnknown)
+    {
+        if (printSeparator == true)
+        {
+            printf(", ");
+        }
+        printf("Unknown access");
+        printSeparator = true;
+    }
+    if (accessMode & VmbAccessModeExclusive)
+    {
+        if (printSeparator == true)
+        {
+            printf(", ");
+        }
+        printf("Exclusive access");
+        printSeparator = true;
+    }
+    printf("\n");
+}
 
 //
 // Starts Vimba
@@ -42,18 +85,88 @@
 //
 void ListCameras()
 {
-    VmbError_t          err             = VmbErrorSuccess;
-    VmbCameraInfo_t *   pCameras        = NULL;
-    VmbUint32_t         i               = 0;
-    VmbUint32_t         nCount          = 0;
-    VmbUint32_t         nFoundCount     = 0;
+    VmbError_t                err             = VmbErrorSuccess;
+    VmbCameraInfo_t *         pCameras        = NULL;
+    VmbInterfaceInfo_t *      pInterfaces     = NULL;
+    VmbTransportLayerInfo_t * pTransports     = NULL;
+    VmbUint32_t         i                     = 0;
+    VmbUint32_t               nCount          = 0;
+    VmbUint32_t               nFoundCount     = 0;
+    VmbUint32_t               nIntCount       = 0;
+    VmbUint32_t               nIntFoundCount  = 0;
+    VmbUint32_t               nTLCount        = 0;
+    VmbUint32_t               nTLFoundCount   = 0;
     
-    err = VmbStartup();                                                                     // Initialize the Vimba API
+    err = VmbStartup(NULL);                                                                 // Initialize the Vimba API
     PrintVimbaVersion();                                                                    // Print Vimba Version
 
     if ( VmbErrorSuccess == err )
     {
-        DiscoverGigECameras();
+        err = VmbInterfacesList(NULL, 0, &nIntCount, sizeof *pInterfaces);
+        if ( VmbErrorSuccess == err && nIntCount != 0 )
+        {
+            printf( "Interfaces found: %d\n", nIntCount );
+
+            pInterfaces = (VmbInterfaceInfo_t*)malloc( sizeof *pInterfaces * nIntCount);
+
+            if ( NULL != pInterfaces )
+            {
+                err = VmbInterfacesList( pInterfaces, nIntCount, &nIntFoundCount, sizeof *pInterfaces );
+                if( VmbErrorSuccess == err || VmbErrorMoreData == err )
+                {
+                    if( nIntFoundCount < nIntCount )
+                    {
+                        nIntCount = nIntFoundCount;
+                    }
+                }
+                else
+                {
+                    printf( "Could not retreive interface layer list. Error code: %d\n", err );
+                    nIntCount = 0;
+                }
+            }
+            else
+            {
+                printf( "Could not allocate interface list.\n" );
+            }
+        }
+        else
+        {
+            printf( "Could not list interfaces or no interfaces present. Error code: %d\n", err );
+        }
+
+        err = VmbTransportLayersList(NULL, 0, &nTLCount, sizeof *pTransports );
+        if ( VmbErrorSuccess == err && nTLCount != 0 )
+        {
+            printf( "Transport layers found: %d\n", nTLCount );
+
+            pTransports = (VmbTransportLayerInfo_t*)malloc( sizeof *pTransports * nTLCount);
+
+            if ( NULL != pTransports )
+            {
+                err = VmbTransportLayersList( pTransports, nTLCount, &nTLFoundCount, sizeof *pTransports );
+                if( VmbErrorSuccess == err || VmbErrorMoreData == err )
+                {
+                    if( nTLFoundCount < nTLCount )
+                    {
+                        nTLCount = nTLFoundCount;
+                    }
+                }
+                else
+                {
+                    printf( "Could not retrieve transport layer list. Error code: %d\n", err );
+                    nTLCount = 0;
+                }
+            }
+            else
+            {
+                printf( "Could not allocate transport layer list.\n" );
+            }
+        }
+        else
+        {
+            printf( "Could not list transport layers or no transport layers present. Error code: %d\n", err );
+        }
 
         err = VmbCamerasList( NULL, 0, &nCount, sizeof *pCameras );                         // Get the amount of known cameras
         if (    VmbErrorSuccess == err
@@ -61,7 +174,7 @@ void ListCameras()
         {
             printf( "Cameras found: %d\n\n", nCount );
         
-            pCameras = (VmbCameraInfo_t*)malloc( sizeof *pCameras * nCount );
+            pCameras = (VmbCameraInfo_t*)malloc( sizeof *pCameras * nCount);
             if ( NULL != pCameras )
             {
                 err = VmbCamerasList( pCameras, nCount, &nFoundCount, sizeof *pCameras );   // Query all static details of all known cameras
@@ -75,20 +188,64 @@ void ListCameras()
                     }
                     for ( i=0; i<nCount; ++i )                                              // And print them out
                     {
-                        printf( "/// Camera Name: %s\n/// Model Name: %s\n/// Camera ID: %s\n/// Serial Number: %s\n/// @ Interface ID: %s\n\n\n",
+                        printf( "/// Camera Name            : %s\n"
+                                "/// Model Name             : %s\n"
+                                "/// Camera ID              : %s\n"
+                                "/// Serial Number          : %s\n",
                                 pCameras[i].cameraName,
                                 pCameras[i].modelName,
                                 pCameras[i].cameraIdString,
-                                pCameras[i].serialString,
-                                pCameras[i].interfaceIdString );
+                                pCameras[i].serialString );
+
+                        printf("/// Permitted Access Modes : ");
+                        printAccessModes(pCameras[i].permittedAccess);
+
+                        // find corresponding interface
+                        VmbInterfaceInfo_t* foundIFace = NULL;
+                        VmbInterfaceInfo_t* const interfacesEnd = pInterfaces + nIntCount;
+                        for (VmbInterfaceInfo_t* iFace = pInterfaces; foundIFace == NULL && iFace != interfacesEnd; ++iFace)
+                        {
+                            if (pCameras[i].interfaceHandle == iFace->interfaceHandle)
+                            {
+                                foundIFace = iFace;
+                            }
+                        }
+
+                        if (foundIFace == NULL)
+                        {
+                            printf("corresponding interface not found\n");
+                        }
+                        else
+                        {
+                            printf("/// @ Interface ID         : %s\n", foundIFace->interfaceIdString);
+                        }
+
+                        // find corresponding transport layer
+                        VmbTransportLayerInfo_t* foundTl = NULL;
+                        VmbTransportLayerInfo_t* const tlsEnd = pTransports + nTLCount;
+                        for (VmbTransportLayerInfo_t* tl = pTransports; foundTl == NULL && tl != tlsEnd; ++tl)
+                        {
+                            if (pCameras[i].transportLayerHandle == tl->transportLayerHandle)
+                            {
+                                foundTl = tl;
+                            }
+                        }
+
+                        if (foundTl == NULL)
+                        {
+                            printf("corresponding transport layer not found\n");
+                        }
+                        else
+                        {
+                            printf("/// @ Transport Layer ID   : %s\n", foundTl->transportLayerIdString);
+                            printf("/// @ Transport Layer Path : %s\n\n\n", foundTl->transportLayerPath);
+                        }
                     }
                 }
                 else
                 {
                     printf( "Could not retrieve camera list. Error code: %d\n", err );
                 }
-                free( pCameras );
-                pCameras = NULL;
             }
             else
             {
@@ -101,6 +258,18 @@ void ListCameras()
         }
         
         VmbShutdown();                                                                      // Close Vimba
+        if ( pInterfaces ) {
+          free ( pInterfaces );
+          pInterfaces = NULL;
+        }
+        if ( pTransports ) {
+          free ( pTransports );
+          pTransports = NULL;
+        }
+        if ( pCameras ) {
+          free( pCameras );
+          pCameras = NULL;
+        }
     }
     else
     {

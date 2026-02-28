@@ -27,7 +27,7 @@
 
 #include "PrintVimbaVersion.h"
 #include <stdio.h>
-#include <VimbaC/Include/VimbaC.h>
+#include <VmbC/VmbC.h>
 
 //
 // Prints out the version of the Vimba API

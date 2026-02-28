@@ -7,10 +7,9 @@
 #include <ADGenICam.h>
 #include <VimbaFeature.h>
 
-#include "VimbaCPP/Include/VimbaCPP.h"
+#include "VmbCPP/VmbCPP.h"
 
-using namespace AVT;
-using namespace AVT::VmbAPI;
+using namespace VmbCPP;
 using namespace std;
 
 #define VMBConvertPixelFormatString  "VMB_CONVERT_PIXEL_FORMAT"   // asynParamInt32, R/W
@@ -70,7 +69,7 @@ private:
 
     const char *cameraId_;
     CameraPtr pCamera_;
-    VimbaSystem & system_;
+    VmbSystem & system_;
 
     bool exiting_;
     bool acquiring_;

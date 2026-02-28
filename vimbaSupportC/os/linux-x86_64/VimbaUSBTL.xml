@@ -1,20 +1,61 @@
 <?xml version="1.0" standalone="no" ?>
 <Settings>
-
+    <Logging>
     <!--
-            Use this to activate logging and set filename for logging (path can be absolute or relative to TL)
-            Default behavior if omitted:    Logging is deactivated
+        Log Levels
+            - Trace
+            - Debug
+            - Info
+            - Warning
+            - Error
+            - Fatal
     -->
-    <!-- <LogFileName>&#37;TEMP&#37;\VimbaUSBTL.log</LogFileName> -->
+        <Level>Warning</Level>
 
+        <!--
+        Formats
+            - AVT_Default       - Allied Visions logging format
+            - CEF               - ArcSight Common Event Format.
+            - ECS               - Elastic Common Schema, single-line
+            - ECS_Pretty        - ECS, multi-line and indented
+            - GELF              - Graylog Extended Log Format, single-line
+            - GELF_Pretty       - GELF, multi-line and indented
+            - JSON              - JavaScript Object Notation format, single-line
+            - JSON_Pretty       - JSON, multi-line and indented
+            - LEEF              - IBM Log Event Extended Format
+            - LEEF_NoSysLog     - LEEF without optional syslog header
+            - LTSV              - Labeled Tab-separated Values
+            - Logfmt            - logfmt, recommended format for Splunk
+            - Spdlog            - spdlog default format
+            - Syslog_RFC5424    - Syslog (RFC 5424) Not used for syslog sink. Use this for writing syslog protocol to files or sockets.
+            - Custom1           - custom format, as specified in CustomFormat1
+            - Custom2           - custom format, as specified in CustomFormat2
 
-    <!--
-            Append messages to log file or reset log file at each transport layer restart (if logging is enabled)
-            True:                           Always append log messages
-            False:                          Reset log file at each transport layer restart
-            Default behavior if omitted:    Reset log file at each transport layer restart
+            If no Format is specified a default value will be chosen
     -->
-    <!-- <AppendLog>True</AppendLog> -->
+        <Sinks>
+            <!-- <Sink type="Terminal" format="AVT_Default"/> -->
+            <!-- <Sink type="TerminalColored" format="AVT_Default"/> -->
+            <!-- <Sink type="File" file-path="VimbaUSBTL.log" format="AVT_Default" mode="Truncate"/> --> <!-- modes: Append, Truncate -->
+            <!-- <Sink type="Syslog"/> -->
+            <!-- <Sink type="SystemdJournal"/> -->
+            <!-- <Sink type="WinEventLog"/> -->
+            <!-- <Sink type="WinDebugConsole" format="AVT_Default"/> -->
+            <!-- <Sink type="TCP" address="127.0.0.1" port="5530" format="JSON"/> -->
+            <!-- <Sink type="UDP" address="127.0.0.1" port="5140" format="Syslog_RFC5424"/> -->
+            <!-- <Sink type="Memento"/> -->
+        </Sinks>
+        <!-- For defining custom patterns use spdlog syntax
+             See: https://github.com/gabime/spdlog/wiki/Custom-formatting
+             Source flags (%@, %s, %g, %#) are not supported.
+             Additionally the following pattern flags are available:
+                %*  Diagnostic Context Data (recommended)
+                %N  Numerical log level
+                %/  Hostname
+        -->
+        <CustomFormat1>%T - USB-TL on %/ with severity: [%-8l] - Message: %v - Context: %*</CustomFormat1>
+        <CustomFormat2>[%n] [%^%l%$] %v %*</CustomFormat2>
+    </Logging>
 
 
     <!--
@@ -33,33 +74,32 @@
             Default behavior if omitted:    Emulation off (GenTL compliant behavior)
     -->
     <EmulateAccessModes>True</EmulateAccessModes>
-    
-    
+
+
     <!--
-			Use manual maximum transfer count for USB transfers
+            Use manual maximum transfer count for USB transfers
             Decimal and hexadecimal numbers (prefixed with "0x") can be used
-            Default behavior if omitted:    Windows: 64
-                                            Linux:   31
+            Default behavior if omitted:    32
     -->
-    <!-- <MaxTransferCount>64</MaxTransferCount> -->
-	
-    
-	<!--
-			Use manual maximum transfer size (in bytes) for USB transfers
-            Decimal and hexadecimal numbers (prefixed with "0x") can be used
-            Default behavior if omitted:    262144
-    -->
-    <!-- <MaxTransferSize>262144</MaxTransferSize> -->
-    
-    
+    <!-- <MaxTransferCount>32</MaxTransferCount> -->
+
+
     <!--
-			Number of frames to use for intermediate frame buffering. Values
+            Use manual maximum transfer size (in bytes) for USB transfers
+            Decimal and hexadecimal numbers (prefixed with "0x") can be used
+            Default behavior if omitted:    0x40000 (256 kB)
+    -->
+    <!-- <MaxTransferSize>0x40000</MaxTransferSize> -->
+
+
+    <!--
+            Number of frames to use for intermediate frame buffering. Values
             greater than 0 mean that no zero copy is possible anymore.
             Decimal and hexadecimal numbers (prefixed with "0x") can be used
             Default behavior if omitted:    0 (No intermediate frame buffering)
     -->
     <!-- <DriverBuffersCount>3</DriverBuffersCount> -->
-    
+
     <!--
             Set the folder in which remote device XML files will be cached
             Default behavior if omitted:    No XML files will be cached
