@@ -540,37 +540,13 @@ record(int64in, "$(P)$(R)GC_HeightMax_RBV") {
   info( autosaveFields, "DESC LOLO LOW HIGH HIHI LLSV LSV HSV HHSV EGU TSE" )
 }
 
-record(int64in, "$(P)$(R)GC_Width_RBV") {
-  field(DTYP, "asynInt64")
-  field(INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))GC_I_Width")
-  field(SCAN, "I/O Intr")
-  field(DISA, "0")
-  info( autosaveFields, "DESC LOLO LOW HIGH HIHI LLSV LSV HSV HHSV EGU TSE" )
-}
+alias("$(P)$(R)SizeX_RBV", "$(P)$(R)GC_Width_RBV")
 
-record(int64out, "$(P)$(R)GC_Width") {
-  field(DTYP, "asynInt64")
-  field(OUT,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))GC_I_Width")
-  field(DISA, "0")
-  field(PINI, "YES")
-  info( autosaveFields, "DESC LOLO LOW HIGH HIHI LLSV LSV HSV HHSV EGU TSE VAL" )
-}
+alias("$(P)$(R)SizeX", "$(P)$(R)GC_Width")
 
-record(int64in, "$(P)$(R)GC_Height_RBV") {
-  field(DTYP, "asynInt64")
-  field(INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))GC_I_Height")
-  field(SCAN, "I/O Intr")
-  field(DISA, "0")
-  info( autosaveFields, "DESC LOLO LOW HIGH HIHI LLSV LSV HSV HHSV EGU TSE" )
-}
+alias("$(P)$(R)SizeY_RBV", "$(P)$(R)GC_Height_RBV")
 
-record(int64out, "$(P)$(R)GC_Height") {
-  field(DTYP, "asynInt64")
-  field(OUT,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))GC_I_Height")
-  field(DISA, "0")
-  field(PINI, "YES")
-  info( autosaveFields, "DESC LOLO LOW HIGH HIHI LLSV LSV HSV HHSV EGU TSE VAL" )
-}
+alias("$(P)$(R)SizeY", "$(P)$(R)GC_Height")
 
 record(int64in, "$(P)$(R)GC_OffsetX_RBV") {
   field(DTYP, "asynInt64")
