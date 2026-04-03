@@ -5,12 +5,11 @@
 #include <VimbaFeature.h>
 #include <VimbaError.h>
 
-#include "VimbaCPP/Include/VimbaCPP.h"
+#include "VmbCPP/VmbCPP.h"
 
 static const char *driverName="VimbaFeature";
 
-using namespace AVT;
-using namespace AVT::VmbAPI;
+using namespace VmbCPP;
 using namespace std;
 
 VimbaFeature::VimbaFeature(GenICamFeatureSet *set, 

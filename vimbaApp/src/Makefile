@@ -13,14 +13,14 @@ endif
 LIB_SRCS += VimbaFeature.cpp
 LIB_SRCS += ADVimba.cpp camera_ts.cpp
 
-LIB_LIBS  += VimbaCPP ADGenICam
+LIB_LIBS  += VmbCPP ADGenICam
 
 DBD += ADVimbaSupport.dbd
 
-PROD_LIBS_WIN32 += VimbaCPP
+PROD_LIBS_WIN32 += VmbCPP
 
 # We need to list this as a SYS_LIBS when building statically because it is only available as a .so, not .a
-PROD_SYS_LIBS_Linux += VimbaCPP VimbaC
+PROD_SYS_LIBS_Linux += VmbCPP VmbC
 
 include $(ADCORE)/ADApp/commonLibraryMakefile
 

@@ -32,7 +32,7 @@
 #include <unistd.h>
 #endif
 
-#include <VimbaC/Include/VimbaC.h>
+#include <VmbC/VmbC.h>
 
 #include "DiscoverGigECameras.h"
 
@@ -44,15 +44,15 @@ VmbError_t DiscoverGigECameras()
     VmbError_t  err     = VmbErrorSuccess;
     VmbBool_t   isGigE  = VmbBoolFalse;
 
-    err = VmbFeatureBoolGet( gVimbaHandle, "GeVTLIsPresent", &isGigE );                 // Is Vimba connected to a GigE transport layer?
+    err = VmbFeatureBoolGet( gVmbHandle, "GeVTLIsPresent", &isGigE );                 // Is Vimba connected to a GigE transport layer?
     if ( VmbErrorSuccess == err )
     {
         if( VmbBoolTrue == isGigE )
         {
-            err = VmbFeatureIntSet( gVimbaHandle, "GeVDiscoveryAllDuration", 250 );     // Set the waiting duration for discovery packets to return. If not set the default of 150 ms is used.
+            err = VmbFeatureIntSet( gVmbHandle, "GeVDiscoveryAllDuration", 250 );     // Set the waiting duration for discovery packets to return. If not set the default of 150 ms is used.
             if( VmbErrorSuccess == err )
             {
-                err = VmbFeatureCommandRun( gVimbaHandle, "GeVDiscoveryAllOnce" );      // Send discovery packets to GigE cameras and wait 250 ms until they are answered
+                err = VmbFeatureCommandRun( gVmbHandle, "GeVDiscoveryAllOnce" );      // Send discovery packets to GigE cameras and wait 250 ms until they are answered
                 if( VmbErrorSuccess != err )
                 {
                     printf( "Could not ping GigE cameras over the network. Reason: %d\n", err );

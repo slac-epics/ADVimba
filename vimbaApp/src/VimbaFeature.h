@@ -4,11 +4,9 @@
 #include <GenICamFeature.h>
 #include <ADVimba.h>
 
-#include "VimbaCPP/Include/VimbaCPP.h"
-#include "VimbaCPP/Include/VimbaCPP.h"
+#include "VmbCPP/VmbCPP.h"
 
-using namespace AVT;
-using namespace AVT::VmbAPI;
+using namespace VmbCPP;
 
 class VimbaFeature : public GenICamFeature
 {
