@@ -296,48 +296,56 @@ asynStatus ADVimba::connectCamera(void)
         return asynError;
     }
 
-    // cameraId_ can be either a serial number or index - try serial number lookup first
-    for(CameraPtrVector::iterator iter = cameras.begin(); cameras.end() != iter; ++iter) {
-        if (checkError((*iter)->GetSerialNumber(serialNum), functionName, "VimbaCamera::GetSerialNumber")) {
-            continue;
-        }
-        if (cameraId_ == serialNum) {
-            if (!checkError((*iter)->GetID(camID), functionName, "VimbaCamera::GetID")) {
-                asynPrint(pasynUserSelf, ASYN_TRACE_FLOW,
-                    "%s::%s found camera with serial number %s and id %s\n",
-                    driverName, functionName, cameraId_, camID.c_str());
-                break;
+    // cameraId_ may already be a valid cameraID (ip, mac address, or DEV_XXXXXX) so try that first
+    if (!checkError(system_.OpenCameraByID(cameraId_, VmbAccessModeFull, pCamera_), functionName,
+                    "VimbaSystem::OpenCameraByID")) {
+        asynPrint(pasynUserSelf, ASYN_TRACE_FLOW,
+                  "%s::%s found camera with id %s\n",
+                  driverName, functionName, cameraId_);
+    } else {
+        // cameraId_ can be either a USB camera serial number or index - try serial number lookup first
+        for(CameraPtrVector::iterator iter = cameras.begin(); cameras.end() != iter; ++iter) {
+            if (checkError((*iter)->GetSerialNumber(serialNum), functionName, "VimbaCamera::GetSerialNumber")) {
+                continue;
+            }
+            if (cameraId_ == serialNum) {
+                if (!checkError((*iter)->GetID(camID), functionName, "VimbaCamera::GetID")) {
+                    asynPrint(pasynUserSelf, ASYN_TRACE_FLOW,
+                        "%s::%s found camera with serial number %s and id %s\n",
+                        driverName, functionName, cameraId_, camID.c_str());
+                    break;
+                }
             }
         }
-    }
 
-    // if could not find a camera try using index instead
-    if (camID.empty()) {
-        char* endPtr = NULL;
-        unsigned camIndex = strtoul(cameraId_, &endPtr, 0);
-        if (endPtr) {
-            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                "%s::%s error parsing camera id %s as an index\n", driverName, functionName, cameraId_);
-            return asynError;
-        }
-
-        if (camIndex < cameras.size()) {
-            if (checkError(cameras[camIndex]->GetID(camID), functionName, "VimbaCamera::GetID")) {
+        // if could not find a camera try using index instead
+        if (camID.empty()) {
+            char* endPtr = NULL;
+            unsigned camIndex = strtoul(cameraId_, &endPtr, 0);
+            if (endPtr) {
                 asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                    "%s::%s error querying id of camera at index %u\n", driverName, functionName, camIndex);
+                    "%s::%s error parsing camera id %s as an index\n", driverName, functionName, cameraId_);
+                return asynError;
             }
-        } else {
-            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
-                "%s::%s error camera index %u out of range\n", driverName, functionName, camIndex);
-            return asynError;
-        }
-    }
 
-    if (checkError(system_.OpenCameraByID(camID, VmbAccessModeFull, pCamera_), functionName,
-                   "VimbaSystem::OpenCameraByID")) {
-        asynPrint(pasynUserSelf, ASYN_TRACE_ERROR, 
-            "%s::%s error opening camera %s\n", driverName, functionName, cameraId_);
-       return asynError;
+            if (camIndex < cameras.size()) {
+                if (checkError(cameras[camIndex]->GetID(camID), functionName, "VimbaCamera::GetID")) {
+                    asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                        "%s::%s error querying id of camera at index %u\n", driverName, functionName, camIndex);
+                }
+            } else {
+                asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                    "%s::%s error camera index %u out of range\n", driverName, functionName, camIndex);
+                return asynError;
+            }
+        }
+
+        if (checkError(system_.OpenCameraByID(camID, VmbAccessModeFull, pCamera_), functionName,
+                       "VimbaSystem::OpenCameraByID")) {
+            asynPrint(pasynUserSelf, ASYN_TRACE_ERROR,
+                "%s::%s error opening camera %s\n", driverName, functionName, cameraId_);
+           return asynError;
+        }
     }
 
     // Make sure the camera has not been left in capturing state (like if the IOC crashed)
